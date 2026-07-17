@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import QuoteModalProvider from "@/components/QuoteModal";
 
 export const metadata: Metadata = {
   title: "Comar Móveis Planejados | Marcenaria sob medida",
@@ -14,7 +15,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-BR">
-      <body>{children}</body>
+      <body>
+        <QuoteModalProvider>{children}</QuoteModalProvider>
+      </body>
     </html>
   );
 }

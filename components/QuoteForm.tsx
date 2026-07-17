@@ -22,7 +22,11 @@ const INVESTIMENTOS = [
   "Ainda não sei",
 ];
 
-export default function QuoteForm() {
+interface QuoteFormProps {
+  onSubmitted?: () => void;
+}
+
+export default function QuoteForm({ onSubmitted }: QuoteFormProps) {
   const [nome, setNome] = useState("");
   const [whats, setWhats] = useState("");
   const [ambiente, setAmbiente] = useState(AMBIENTES[0]);
@@ -46,10 +50,11 @@ export default function QuoteForm() {
       "_blank",
       "noopener"
     );
+    onSubmitted?.();
   }
 
   return (
-    <form className="form-card reveal" onSubmit={handleSubmit}>
+    <form className="form-card" onSubmit={handleSubmit}>
       <div className="field">
         <label htmlFor="nome">Nome completo</label>
         <input

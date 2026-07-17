@@ -1,11 +1,12 @@
+"use client";
+
 import Image from "next/image";
 import ScrollEffects from "@/components/ScrollEffects";
-import QuoteForm from "@/components/QuoteForm";
 import ProjectGallery from "@/components/ProjectGallery";
 import VideoTestimonialCard from "@/components/VideoTestimonialCard";
 import GoogleRatingBadge from "@/components/GoogleRatingBadge";
+import { useQuoteModal } from "@/components/QuoteModal";
 
-const WHATSAPP_LINK = "https://wa.me/5553999044420";
 const INSTAGRAM_LINK = "https://www.instagram.com/comarmoveis/";
 const FACEBOOK_LINK = "https://www.facebook.com/comarmoveis";
 const GOOGLE_MAPS_LINK =
@@ -30,6 +31,8 @@ const DEPOIMENTOS_ESCRITOS = [
 ];
 
 export default function Home() {
+  const { openQuoteModal } = useQuoteModal();
+
   return (
     <>
       <ScrollEffects />
@@ -45,14 +48,17 @@ export default function Home() {
             <a href="#localizacao">Localização</a>
           </nav>
           <div className="header-actions">
-            <a className="btn btn-primary btn-sm" href="#orcamento">
+            <button
+              type="button"
+              className="btn btn-primary btn-sm"
+              onClick={openQuoteModal}
+            >
               Orçamento
-            </a>
-            <a
+            </button>
+            <button
+              type="button"
               className="icon-btn"
-              href={WHATSAPP_LINK}
-              target="_blank"
-              rel="noopener noreferrer"
+              onClick={openQuoteModal}
               aria-label="WhatsApp"
             >
               <svg
@@ -65,7 +71,7 @@ export default function Home() {
               >
                 <path d="M21 11.5a8.4 8.4 0 0 1-8.9 8.4 8.5 8.5 0 0 1-4-1L3 20l1.2-4.8a8.4 8.4 0 0 1-1-4A8.4 8.4 0 0 1 11.9 3a8.4 8.4 0 0 1 9.1 8.5z" />
               </svg>
-            </a>
+            </button>
           </div>
         </div>
       </header>
@@ -82,14 +88,13 @@ export default function Home() {
                 espaço comercial.
               </p>
               <div className="hero-ctas">
-                <a
+                <button
+                  type="button"
                   className="btn btn-primary"
-                  href={WHATSAPP_LINK}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  onClick={openQuoteModal}
                 >
                   Solicitar orçamento
-                </a>
+                </button>
                 <a className="btn btn-outline" href="#projetos">
                   Ver projetos
                 </a>
@@ -197,27 +202,6 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="mais-depoimentos">
-          <div className="section-inner">
-            <div className="section-head reveal">
-              <p className="eyebrow">Mais feedback</p>
-              <h2>Todos os depoimentos dos nossos clientes</h2>
-              <p>Espaço reservado para os próximos vídeos de clientes.</p>
-            </div>
-            <div className="more-grid reveal">
-              {Array.from({ length: 6 }).map((_, i) => (
-                <div className="more-slot" key={i}>
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                    <path d="M23 7l-7 5 7 5V7z" />
-                    <rect x="1" y="5" width="15" height="14" rx="2" />
-                  </svg>
-                  <span>vídeo em breve</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
         <section id="avaliacoes" style={{ background: "var(--cream-panel)" }}>
           <div className="section-inner">
             <div className="section-head reveal">
@@ -258,23 +242,52 @@ export default function Home() {
             Móvel planejado: decora, organiza, possibilita,{" "}
             <b>transforma o ambiente e a vida.</b>
           </blockquote>
-          <a className="btn btn-primary reveal" href="#orcamento">
+          <button
+            type="button"
+            className="btn btn-primary reveal"
+            onClick={openQuoteModal}
+          >
             Quero um projeto assim
-          </a>
+          </button>
         </section>
 
         <section id="orcamento" style={{ background: "var(--cream-panel)" }}>
           <div className="section-inner">
-            <div className="form-wrap">
-              <div className="reveal">
-                <p className="eyebrow">Orçamento</p>
-                <h2>Solicite seu projeto sem compromisso</h2>
-                <p className="lede" style={{ marginTop: "1.1rem", color: "var(--ink-soft)" }}>
-                  Preencha os dados abaixo e nossa equipe retorna pelo
-                  WhatsApp com os próximos passos da medição.
-                </p>
-              </div>
-              <QuoteForm />
+            <div className="cta-panel reveal">
+              <p className="eyebrow">Orçamento</p>
+              <h2>Solicite seu projeto sem compromisso</h2>
+              <p className="lede" style={{ marginTop: "1.1rem", color: "var(--ink-soft)" }}>
+                Preencha os dados no formulário e nossa equipe retorna pelo
+                WhatsApp com os próximos passos da medição.
+              </p>
+              <button
+                type="button"
+                className="btn btn-primary"
+                onClick={openQuoteModal}
+              >
+                Solicitar orçamento
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <section id="mais-depoimentos">
+          <div className="section-inner">
+            <div className="section-head reveal">
+              <p className="eyebrow">Mais feedback</p>
+              <h2>Todos os depoimentos dos nossos clientes</h2>
+              <p>Espaço reservado para os próximos vídeos de clientes.</p>
+            </div>
+            <div className="more-grid reveal">
+              {Array.from({ length: 6 }).map((_, i) => (
+                <div className="more-slot" key={i}>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                    <path d="M23 7l-7 5 7 5V7z" />
+                    <rect x="1" y="5" width="15" height="14" rx="2" />
+                  </svg>
+                  <span>vídeo em breve</span>
+                </div>
+              ))}
             </div>
           </div>
         </section>
@@ -309,7 +322,14 @@ export default function Home() {
                 </a>
               </div>
               <div className="map-placeholder reveal">
-                <span className="map-pin"></span>
+                <iframe
+                  className="map-frame"
+                  src="https://www.google.com/maps?q=R.+Ramiro+Barcelos,+910,+Centro,+S%C3%A3o+Jos%C3%A9+do+Norte,+RS,+96225-000&output=embed"
+                  title="Localização da Comar Móveis Planejados no Google Maps"
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  allowFullScreen
+                />
               </div>
             </div>
           </div>
