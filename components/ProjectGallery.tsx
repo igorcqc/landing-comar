@@ -13,13 +13,13 @@ interface Projeto {
 }
 
 const PROJETOS: Projeto[] = [
-  { src: "/projetos/cozinha-01.jpg", alt: "Cozinha planejada com ilha em preto fosco e marcenaria em madeira", categoria: "Cozinha", big: true },
+  { src: "/projetos/cozinha-01.jpg", alt: "Cozinha planejada com ilha em preto fosco e móveis sob medida em madeira", categoria: "Cozinha", big: true },
   { src: "/projetos/quarto-01.jpg", alt: "Quarto planejado com painel ripado em madeira e iluminação embutida", categoria: "Quarto" },
   { src: "/projetos/closet-01.jpg", alt: "Closet planejado com iluminação em LED e portas amadeiradas", categoria: "Closet" },
   { src: "/projetos/sala-01.jpg", alt: "Estofado sob medida em linho claro", categoria: "Sala" },
   { src: "/projetos/banheiro-01.jpg", alt: "Banheiro planejado com bancada em preto e marmorizado", categoria: "Banheiro", big: true },
   { src: "/projetos/quarto-02.jpg", alt: "Quarto planejado com cabeceira em madeira e criado-mudo em concreto", categoria: "Quarto" },
-  { src: "/projetos/cozinha-02.jpg", alt: "Cozinha planejada com marcenaria escura e iluminação linear", categoria: "Cozinha" },
+  { src: "/projetos/cozinha-02.jpg", alt: "Cozinha planejada com acabamento escuro e iluminação linear", categoria: "Cozinha" },
   { src: "/projetos/sala-02.jpg", alt: "Sala planejada com painel para TV e acabamento em pedra", categoria: "Sala" },
   { src: "/projetos/detalhe-01.jpg", alt: "Detalhe de acabamento em estofado sob medida", categoria: "Detalhes" },
 ];

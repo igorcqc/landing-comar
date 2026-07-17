@@ -18,7 +18,7 @@ export default function VideoTestimonialCard({
       <div className="video-frame">
         <Image
           src={poster}
-          alt={`Prévia do depoimento em vídeo de cliente — ${ambiente}`}
+          alt={`Prévia do depoimento em vídeo de cliente, ${ambiente}`}
           fill
           sizes="(max-width: 900px) 100vw, 50vw"
           style={{ objectFit: "cover" }}
@@ -33,7 +33,7 @@ export default function VideoTestimonialCard({
       <div className="video-caption">
         <p className="quote">&quot;{quote}&quot;</p>
         <p className="who">
-          {nome} — {ambiente}
+          {nome}, {ambiente}
         </p>
       </div>
     </div>

@@ -3,9 +3,9 @@ import "./globals.css";
 import QuoteModalProvider from "@/components/QuoteModal";
 
 export const metadata: Metadata = {
-  title: "Comar Móveis Planejados | Marcenaria sob medida",
+  title: "Comar Móveis Planejados | Móveis sob medida",
   description:
-    "Móveis planejados sob medida em São José do Norte e Rio Grande. Projeto, fabricação e instalação próprios — mais de 400 ambientes entregues desde 2021.",
+    "Móveis planejados sob medida em São José do Norte e Rio Grande. Projeto, fabricação e instalação próprios, com mais de 400 ambientes entregues desde 2021.",
 };
 
 export default function RootLayout({

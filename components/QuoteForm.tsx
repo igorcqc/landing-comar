@@ -16,8 +16,8 @@ const AMBIENTES = [
 const CIDADES = ["São José do Norte", "Rio Grande", "Outra cidade"];
 const INVESTIMENTOS = [
   "Até R$ 5.000",
-  "R$ 5.000 – R$ 15.000",
-  "R$ 15.000 – R$ 30.000",
+  "R$ 5.000 a R$ 15.000",
+  "R$ 15.000 a R$ 30.000",
   "Acima de R$ 30.000",
   "Ainda não sei",
 ];

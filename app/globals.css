@@ -148,8 +148,14 @@ button {
 }
 .wordmark {
   font-family: var(--font-display);
-  font-size: 1.5rem;
+  font-size: 1.15rem;
   color: var(--ink);
+  white-space: nowrap;
+}
+@media (max-width: 560px) {
+  .wordmark {
+    font-size: 0.95rem;
+  }
 }
 nav.main-nav {
   display: flex;

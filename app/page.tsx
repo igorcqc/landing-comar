@@ -16,17 +16,17 @@ const DEPOIMENTOS_ESCRITOS = [
   {
     quote:
       "Cada detalhe do projeto foi pensado pro nosso espaço. A instalação foi rápida e o acabamento surpreendeu.",
-    who: "exemplo ilustrativo — cliente Cozinha",
+    who: "exemplo ilustrativo, cliente Cozinha",
   },
   {
     quote:
       "Prazo cumprido do jeito que foi combinado, com atualização em cada etapa da fabricação.",
-    who: "exemplo ilustrativo — cliente Closet",
+    who: "exemplo ilustrativo, cliente Closet",
   },
   {
     quote:
       "Orçamento justo e sem enrolação. Hoje é impossível pensar no escritório sem o móvel que a Comar fez.",
-    who: "exemplo ilustrativo — cliente Escritório",
+    who: "exemplo ilustrativo, cliente Escritório",
   },
 ];
 
@@ -40,7 +40,7 @@ export default function Home() {
       <header className="site-header" id="header">
         <div className="header-inner">
           <a className="wordmark" href="#top">
-            Comar
+            Comar Móveis Planejados
           </a>
           <nav className="main-nav">
             <a href="#projetos">Projetos</a>
@@ -81,11 +81,11 @@ export default function Home() {
           <div className="hero-inner">
             <div className="hero-copy reveal">
               <p className="eyebrow">Móveis planejados · SJN &amp; Rio Grande</p>
-              <h1>Marcenaria sob medida para cada ambiente.</h1>
+              <h1>O móvel planejado que transforma sua casa no lugar que você sempre sonhou.</h1>
               <p className="lede">
-                Projeto, fabricação e instalação próprios — mais de 400
-                ambientes planejados desde 2021, do apartamento compacto ao
-                espaço comercial.
+                Projeto, fabricação e instalação próprios, sob medida para
+                cada canto da sua casa. Mais de 400 ambientes entregues
+                desde 2021, do apartamento compacto ao espaço comercial.
               </p>
               <div className="hero-ctas">
                 <button
@@ -104,7 +104,7 @@ export default function Home() {
             <div className="hero-art reveal">
               <Image
                 src="/projetos/cozinha-02.jpg"
-                alt="Cozinha planejada pela Comar Móveis, com marcenaria escura e iluminação linear"
+                alt="Cozinha planejada pela Comar Móveis Planejados, com acabamento escuro e iluminação linear"
                 fill
                 priority
                 sizes="(max-width: 900px) 100vw, 50vw"
@@ -176,7 +176,7 @@ export default function Home() {
               <p className="eyebrow">Depoimentos</p>
               <h2>Quem já planejou com a gente conta como foi</h2>
               <p>
-                Depoimentos em vídeo dos nossos clientes — em breve, com os
+                Depoimentos em vídeo dos nossos clientes. Em breve, com os
                 vídeos reais gravados e editados.
               </p>
             </div>
@@ -185,13 +185,13 @@ export default function Home() {
                 poster="/projetos/quarto-01.jpg"
                 nome="Cliente exemplo"
                 ambiente="Quarto planejado"
-                quote="Depoimento em vídeo — substituir por gravação real do cliente."
+                quote="Depoimento em vídeo, a substituir pela gravação real do cliente."
               />
               <VideoTestimonialCard
                 poster="/projetos/cozinha-01.jpg"
                 nome="Cliente exemplo"
                 ambiente="Cozinha planejada"
-                quote="Depoimento em vídeo — substituir por gravação real do cliente."
+                quote="Depoimento em vídeo, a substituir pela gravação real do cliente."
               />
             </div>
             <div className="video-more reveal">
@@ -206,7 +206,7 @@ export default function Home() {
           <div className="section-inner">
             <div className="section-head reveal">
               <p className="eyebrow">Avaliações</p>
-              <h2>A marcenaria mais bem avaliada da região</h2>
+              <h2>Os móveis planejados mais bem avaliados da região</h2>
             </div>
             <div style={{ display: "flex", justifyContent: "center", marginBottom: "3rem" }}>
               <GoogleRatingBadge variant="block" />
@@ -222,8 +222,8 @@ export default function Home() {
             </div>
             <div className="t-foot reveal">
               <p className="note">
-                depoimentos escritos ilustrativos — substituir por avaliações
-                reais do Google
+                depoimentos escritos ilustrativos, a substituir por
+                avaliações reais do Google
               </p>
               <a
                 className="g-link"
@@ -303,7 +303,7 @@ export default function Home() {
                 <dl>
                   <dt>Endereço</dt>
                   <dd>
-                    R. Ramiro Barcelos, 910 — Centro
+                    R. Ramiro Barcelos, 910, Centro
                     <br />
                     São José do Norte / RS, 96225-000
                   </dd>
@@ -340,7 +340,7 @@ export default function Home() {
         <div className="footer-inner">
           <div className="footer-top">
             <a className="wordmark" href="#top">
-              Comar
+              Comar Móveis Planejados
             </a>
             <div className="footer-links">
               <a href="#projetos">Projetos</a>

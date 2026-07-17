@@ -79,7 +79,7 @@ export default function QuoteModalProvider({
             <p className="eyebrow">Orçamento</p>
             <h2 className="modal-title">Solicite seu projeto sem compromisso</h2>
             <p className="modal-lede">
-              Preencha os dados abaixo — sua mensagem só é enviada pelo
+              Preencha os dados abaixo. Sua mensagem só é enviada pelo
               WhatsApp depois de preencher tudo.
             </p>
             <QuoteForm onSubmitted={closeQuoteModal} />
