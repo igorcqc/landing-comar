@@ -35,10 +35,7 @@ export default function GoogleRatingBadge({
       </svg>
       <span className="google-badge-text">
         <strong>★★★★★ 5,0</strong>
-        <span>
-          [confirmar nº de avaliações] · a empresa mais bem avaliada de São
-          José do Norte
-        </span>
+        <span>117 avaliações · a empresa mais bem avaliada de São José do Norte</span>
       </span>
     </a>
   );
