@@ -1,90 +1,17 @@
+import Image from "next/image";
 import ScrollEffects from "@/components/ScrollEffects";
 import QuoteForm from "@/components/QuoteForm";
+import ProjectGallery from "@/components/ProjectGallery";
+import VideoTestimonialCard from "@/components/VideoTestimonialCard";
+import GoogleRatingBadge from "@/components/GoogleRatingBadge";
 
 const WHATSAPP_LINK = "https://wa.me/5553999044420";
 const INSTAGRAM_LINK = "https://www.instagram.com/comarmoveis/";
 const FACEBOOK_LINK = "https://www.facebook.com/comarmoveis";
+const GOOGLE_MAPS_LINK =
+  "https://www.google.com/maps/place/Comar+M%C3%B3veis+Planejados/@-32.0098652,-52.0403119,17z/data=!3m1!4b1!4m6!3m5!1s0x95119d235c6770bb:0xdb716984f62c2203!8m2!3d-32.0098652!4d-52.0403119!16s%2Fg%2F11qqfgs9l9";
 
-const PROJETOS_DESTAQUE = [
-  {
-    label: "Cozinha planejada",
-    icon: (
-      <svg viewBox="0 0 24 24">
-        <rect x="3" y="13" width="18" height="7" rx="1" />
-        <path d="M5 13V8a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v5" />
-        <circle cx="8" cy="16.5" r="0.6" fill="#6b4426" stroke="none" />
-      </svg>
-    ),
-  },
-  {
-    label: "Quarto & suíte",
-    icon: (
-      <svg viewBox="0 0 24 24">
-        <rect x="3" y="11" width="18" height="8" rx="2" />
-        <path d="M5 11V9a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v2" />
-        <path d="M3 19v2M21 19v2" />
-      </svg>
-    ),
-  },
-  {
-    label: "Closet planejado",
-    icon: (
-      <svg viewBox="0 0 24 24">
-        <rect x="4" y="3" width="16" height="18" rx="1.5" />
-        <path d="M12 3v18" />
-        <circle cx="9" cy="12" r="0.6" fill="#6b4426" stroke="none" />
-        <circle cx="15" cy="12" r="0.6" fill="#6b4426" stroke="none" />
-      </svg>
-    ),
-  },
-  {
-    label: "Sala & estofados",
-    icon: (
-      <svg viewBox="0 0 24 24">
-        <path d="M5 20v-6a4 4 0 0 1 4-4h6a4 4 0 0 1 4 4v6" />
-        <path d="M3 20h18M5 14V9M19 14V9" />
-      </svg>
-    ),
-  },
-];
-
-const AMBIENTES = [
-  {
-    label: "Residencial",
-    bg: "#e7d6bc",
-    stroke: "#8a5a2c",
-    paths: (
-      <>
-        <rect x="3" y="13" width="18" height="7" rx="1" />
-        <path d="M5 13V8a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v5" />
-      </>
-    ),
-  },
-  {
-    label: "Comercial",
-    bg: "#d9c6ac",
-    stroke: "#8a5a2c",
-    paths: (
-      <>
-        <rect x="3" y="7" width="18" height="13" rx="1.5" />
-        <path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
-      </>
-    ),
-  },
-  {
-    label: "Estofados sob medida",
-    bg: "#cbb190",
-    stroke: "#6b4523",
-    paths: (
-      <>
-        <path d="M5 20v-6a4 4 0 0 1 4-4h6a4 4 0 0 1 4 4v6" />
-        <path d="M3 20h18M5 14V9M19 14V9" />
-      </>
-    ),
-  },
-];
-
-const DEPOIMENTOS = [
+const DEPOIMENTOS_ESCRITOS = [
   {
     quote:
       "Cada detalhe do projeto foi pensado pro nosso espaço. A instalação foi rápida e o acabamento surpreendeu.",
@@ -114,8 +41,7 @@ export default function Home() {
           </a>
           <nav className="main-nav">
             <a href="#projetos">Projetos</a>
-            <a href="#ambientes">Ambientes</a>
-            <a href="#avaliacoes">Avaliações</a>
+            <a href="#depoimentos">Depoimentos</a>
             <a href="#localizacao">Localização</a>
           </nav>
           <div className="header-actions">
@@ -168,55 +94,17 @@ export default function Home() {
                   Ver projetos
                 </a>
               </div>
+              <GoogleRatingBadge variant="inline" />
             </div>
-            <div className="hero-art reveal" aria-hidden="true">
-              <svg
-                viewBox="0 0 600 500"
-                width="100%"
-                height="100%"
-                preserveAspectRatio="xMidYMid slice"
-              >
-                <ellipse cx="300" cy="405" rx="250" ry="55" fill="#e9dbc7" />
-                <rect
-                  x="90"
-                  y="240"
-                  width="300"
-                  height="110"
-                  rx="26"
-                  fill="#f8efe2"
-                  stroke="#e3d3bd"
-                  strokeWidth="1"
-                />
-                <rect
-                  x="90"
-                  y="205"
-                  width="300"
-                  height="70"
-                  rx="22"
-                  fill="#f8efe2"
-                  stroke="#e3d3bd"
-                  strokeWidth="1"
-                />
-                <rect x="108" y="222" width="76" height="58" rx="14" fill="#ffffff" />
-                <rect x="192" y="222" width="76" height="58" rx="14" fill="#e3a63e" />
-                <rect x="276" y="222" width="76" height="58" rx="14" fill="#ffffff" />
-                <rect x="96" y="330" width="18" height="26" rx="4" fill="#a97b48" />
-                <rect x="366" y="330" width="18" height="26" rx="4" fill="#a97b48" />
-                <path
-                  d="M420 300c-30 0-46 22-46 48s20 44 46 44 46-20 46-44-16-48-46-48z"
-                  fill="#6b4426"
-                />
-                <rect x="392" y="360" width="10" height="30" fill="#4d3019" />
-                <rect x="438" y="360" width="10" height="30" fill="#4d3019" />
-                <ellipse cx="270" cy="368" rx="58" ry="14" fill="#c9a876" />
-                <rect x="240" y="330" width="60" height="38" rx="6" fill="#b98354" />
-                <rect x="255" y="300" width="10" height="34" fill="#8a5a2c" />
-                <rect x="285" y="300" width="10" height="34" fill="#8a5a2c" />
-                <ellipse cx="264" cy="292" rx="12" ry="16" fill="#e7dccb" />
-                <line x1="264" y1="276" x2="270" y2="255" stroke="#8a9b6e" strokeWidth="2" />
-                <line x1="264" y1="276" x2="256" y2="258" stroke="#8a9b6e" strokeWidth="2" />
-                <line x1="264" y1="276" x2="264" y2="252" stroke="#8a9b6e" strokeWidth="2" />
-              </svg>
+            <div className="hero-art reveal">
+              <Image
+                src="/projetos/cozinha-02.jpg"
+                alt="Cozinha planejada pela Comar Móveis, com marcenaria escura e iluminação linear"
+                fill
+                priority
+                sizes="(max-width: 900px) 100vw, 50vw"
+                style={{ objectFit: "cover" }}
+              />
             </div>
           </div>
         </section>
@@ -260,17 +148,10 @@ export default function Home() {
           <div className="section-inner">
             <div className="section-head reveal">
               <p className="eyebrow">Ambientes</p>
-              <h2>Projetos em destaque</h2>
-              <p>Uma amostra dos ambientes que já planejamos e instalamos.</p>
+              <h2>Olhe os ambientes que já executamos</h2>
+              <p>Projetos reais, entregues e instalados pela nossa equipe.</p>
             </div>
-            <div className="grid reveal">
-              {PROJETOS_DESTAQUE.map((item) => (
-                <div className="card" key={item.label}>
-                  <div className="thumb">{item.icon}</div>
-                  <figcaption>{item.label}</figcaption>
-                </div>
-              ))}
-            </div>
+            <ProjectGallery />
             <div className="grid-cta reveal">
               <a
                 className="btn btn-outline"
@@ -278,41 +159,76 @@ export default function Home() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Ver mais projetos →
+                Ver mais projetos no Instagram →
               </a>
             </div>
           </div>
         </section>
 
-        <section id="ambientes" style={{ background: "var(--cream-panel)" }}>
+        <section id="depoimentos" style={{ background: "var(--cream-panel)" }}>
           <div className="section-inner">
             <div className="section-head reveal">
-              <p className="eyebrow">Especialidades</p>
-              <h2>Ambientes que projetamos</h2>
+              <p className="eyebrow">Depoimentos</p>
+              <h2>Quem já planejou com a gente conta como foi</h2>
+              <p>
+                Depoimentos em vídeo dos nossos clientes — em breve, com os
+                vídeos reais gravados e editados.
+              </p>
             </div>
-            <div className="triptych reveal">
-              {AMBIENTES.map((item) => (
-                <div className="tri-card" key={item.label}>
-                  <div className="panel" style={{ background: item.bg }}>
-                    <svg viewBox="0 0 24 24" stroke={item.stroke} strokeWidth="1.2" fill="none">
-                      {item.paths}
-                    </svg>
-                  </div>
-                  <figcaption>{item.label}</figcaption>
+            <div className="video-grid reveal">
+              <VideoTestimonialCard
+                poster="/projetos/quarto-01.jpg"
+                nome="Cliente exemplo"
+                ambiente="Quarto planejado"
+                quote="Depoimento em vídeo — substituir por gravação real do cliente."
+              />
+              <VideoTestimonialCard
+                poster="/projetos/cozinha-01.jpg"
+                nome="Cliente exemplo"
+                ambiente="Cozinha planejada"
+                quote="Depoimento em vídeo — substituir por gravação real do cliente."
+              />
+            </div>
+            <div className="video-more reveal">
+              <a className="btn btn-outline" href="#mais-depoimentos">
+                Ver mais feedback dos nossos clientes →
+              </a>
+            </div>
+          </div>
+        </section>
+
+        <section id="mais-depoimentos">
+          <div className="section-inner">
+            <div className="section-head reveal">
+              <p className="eyebrow">Mais feedback</p>
+              <h2>Todos os depoimentos dos nossos clientes</h2>
+              <p>Espaço reservado para os próximos vídeos de clientes.</p>
+            </div>
+            <div className="more-grid reveal">
+              {Array.from({ length: 6 }).map((_, i) => (
+                <div className="more-slot" key={i}>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                    <path d="M23 7l-7 5 7 5V7z" />
+                    <rect x="1" y="5" width="15" height="14" rx="2" />
+                  </svg>
+                  <span>vídeo em breve</span>
                 </div>
               ))}
             </div>
           </div>
         </section>
 
-        <section id="avaliacoes">
+        <section id="avaliacoes" style={{ background: "var(--cream-panel)" }}>
           <div className="section-inner">
             <div className="section-head reveal">
               <p className="eyebrow">Avaliações</p>
-              <h2>Quem já planejou com a gente</h2>
+              <h2>A marcenaria mais bem avaliada da região</h2>
+            </div>
+            <div style={{ display: "flex", justifyContent: "center", marginBottom: "3rem" }}>
+              <GoogleRatingBadge variant="block" />
             </div>
             <div className="t-grid reveal">
-              {DEPOIMENTOS.map((item) => (
+              {DEPOIMENTOS_ESCRITOS.map((item) => (
                 <div className="t-card" key={item.who}>
                   <div className="stars">★★★★★</div>
                   <p className="quote">&quot;{item.quote}&quot;</p>
@@ -322,17 +238,22 @@ export default function Home() {
             </div>
             <div className="t-foot reveal">
               <p className="note">
-                depoimentos ilustrativos — substituir por avaliações reais do
-                Google
+                depoimentos escritos ilustrativos — substituir por avaliações
+                reais do Google
               </p>
-              <a className="g-link" href="#">
+              <a
+                className="g-link"
+                href={GOOGLE_MAPS_LINK}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 Ver avaliações no Google →
               </a>
             </div>
           </div>
         </section>
 
-        <section className="statement" style={{ background: "var(--cream-panel)" }}>
+        <section className="statement">
           <blockquote className="reveal">
             Móvel planejado: decora, organiza, possibilita,{" "}
             <b>transforma o ambiente e a vida.</b>
@@ -342,7 +263,7 @@ export default function Home() {
           </a>
         </section>
 
-        <section id="orcamento">
+        <section id="orcamento" style={{ background: "var(--cream-panel)" }}>
           <div className="section-inner">
             <div className="form-wrap">
               <div className="reveal">
@@ -358,7 +279,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="localizacao" style={{ background: "var(--cream-panel)" }}>
+        <section id="localizacao">
           <div className="section-inner">
             <div className="loc-wrap">
               <div className="loc-info reveal">
@@ -403,7 +324,7 @@ export default function Home() {
             </a>
             <div className="footer-links">
               <a href="#projetos">Projetos</a>
-              <a href="#avaliacoes">Avaliações</a>
+              <a href="#depoimentos">Depoimentos</a>
               <a href="#localizacao">Localização</a>
             </div>
             <div className="footer-social">

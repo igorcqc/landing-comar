@@ -13,12 +13,21 @@ const AMBIENTES = [
   "Estofados",
   "Outro",
 ];
+const CIDADES = ["São José do Norte", "Rio Grande", "Outra cidade"];
+const INVESTIMENTOS = [
+  "Até R$ 5.000",
+  "R$ 5.000 – R$ 15.000",
+  "R$ 15.000 – R$ 30.000",
+  "Acima de R$ 30.000",
+  "Ainda não sei",
+];
 
 export default function QuoteForm() {
   const [nome, setNome] = useState("");
   const [whats, setWhats] = useState("");
   const [ambiente, setAmbiente] = useState(AMBIENTES[0]);
-  const [mensagem, setMensagem] = useState("");
+  const [cidade, setCidade] = useState(CIDADES[0]);
+  const [investimento, setInvestimento] = useState(INVESTIMENTOS[0]);
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -26,7 +35,8 @@ export default function QuoteForm() {
     const linhas = [
       `Olá! Meu nome é ${nome || "(não informado)"}.`,
       `Tenho interesse em um projeto de: ${ambiente}.`,
-      mensagem ? `Detalhes: ${mensagem}` : null,
+      `Cidade: ${cidade}.`,
+      `Expectativa de investimento: ${investimento}.`,
       whats ? `Meu WhatsApp para retorno: ${whats}` : null,
     ].filter(Boolean);
 
@@ -62,26 +72,43 @@ export default function QuoteForm() {
           required
         />
       </div>
+      <div className="field-row">
+        <div className="field">
+          <label htmlFor="ambiente">Tipo de ambiente</label>
+          <select
+            id="ambiente"
+            value={ambiente}
+            onChange={(e) => setAmbiente(e.target.value)}
+          >
+            {AMBIENTES.map((item) => (
+              <option key={item}>{item}</option>
+            ))}
+          </select>
+        </div>
+        <div className="field">
+          <label htmlFor="cidade">Cidade</label>
+          <select
+            id="cidade"
+            value={cidade}
+            onChange={(e) => setCidade(e.target.value)}
+          >
+            {CIDADES.map((item) => (
+              <option key={item}>{item}</option>
+            ))}
+          </select>
+        </div>
+      </div>
       <div className="field">
-        <label htmlFor="ambiente">Tipo de ambiente</label>
+        <label htmlFor="investimento">Expectativa de investimento</label>
         <select
-          id="ambiente"
-          value={ambiente}
-          onChange={(e) => setAmbiente(e.target.value)}
+          id="investimento"
+          value={investimento}
+          onChange={(e) => setInvestimento(e.target.value)}
         >
-          {AMBIENTES.map((item) => (
+          {INVESTIMENTOS.map((item) => (
             <option key={item}>{item}</option>
           ))}
         </select>
-      </div>
-      <div className="field">
-        <label htmlFor="mensagem">Mensagem</label>
-        <textarea
-          id="mensagem"
-          placeholder="Conte um pouco sobre o seu projeto"
-          value={mensagem}
-          onChange={(e) => setMensagem(e.target.value)}
-        />
       </div>
       <button type="submit" className="btn btn-primary">
         Enviar via WhatsApp
