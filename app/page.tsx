@@ -182,10 +182,11 @@ export default function Home() {
             </div>
             <div className="video-grid reveal">
               <VideoTestimonialCard
+                video="/videos/depoimento-01.mp4"
                 poster="/projetos/quarto-01.jpg"
-                nome="Cliente exemplo"
-                ambiente="Quarto planejado"
-                quote="Depoimento em vídeo, a substituir pela gravação real do cliente."
+                nome="Cliente Comar"
+                ambiente="Depoimento"
+                quote="Confira o depoimento em vídeo."
               />
               <VideoTestimonialCard
                 poster="/projetos/cozinha-01.jpg"
