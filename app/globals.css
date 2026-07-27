@@ -828,7 +828,8 @@ footer {
 }
 .video-frame {
   position: relative;
-  aspect-ratio: 16 / 10;
+  aspect-ratio: 9 / 16;
+  max-height: 560px;
   background: var(--cream-panel);
 }
 .video-frame img {
