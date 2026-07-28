@@ -825,11 +825,13 @@ footer {
   border-radius: 18px;
   overflow: hidden;
   box-shadow: var(--shadow);
+  width: 100%;
+  max-width: 320px;
+  margin: 0 auto;
 }
 .video-frame {
   position: relative;
   aspect-ratio: 9 / 16;
-  max-height: 560px;
   background: var(--cream-panel);
 }
 .video-frame img {
