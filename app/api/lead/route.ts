@@ -69,7 +69,7 @@ export async function POST(request: NextRequest) {
       key: apiKey,
       token,
       idList: list.id,
-      name: `${nome || "Lead site"} — ${ambiente || "Orçamento"}`,
+      name: "Novo Lead - Landing Page",
       desc,
     });
 
