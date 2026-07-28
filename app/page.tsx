@@ -148,14 +148,12 @@ export default function Home() {
                 poster="/videos/posters/depoimento-01.jpg"
                 nome="Everton e Katia"
                 ambiente="Depoimento"
-                quote="Confira o depoimento em vídeo."
               />
               <VideoTestimonialCard
                 video="/videos/depoimento-02.mp4"
                 poster="/videos/posters/depoimento-02.jpg"
                 nome="Idelaine"
                 ambiente="Depoimento"
-                quote="Confira o depoimento em vídeo."
               />
             </div>
             <div className="section-cta reveal">

@@ -4,7 +4,6 @@ interface VideoTestimonialCardProps {
   poster: string;
   nome: string;
   ambiente: string;
-  quote: string;
   video?: string;
 }
 
@@ -12,7 +11,6 @@ export default function VideoTestimonialCard({
   poster,
   nome,
   ambiente,
-  quote,
   video,
 }: VideoTestimonialCardProps) {
   return (
@@ -45,7 +43,6 @@ export default function VideoTestimonialCard({
         )}
       </div>
       <div className="video-caption">
-        <p className="quote">&quot;{quote}&quot;</p>
         <p className="who">{nome}</p>
         <p className="who-sub">Cliente Comar Móveis</p>
       </div>
