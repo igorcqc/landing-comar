@@ -146,14 +146,14 @@ export default function Home() {
               <VideoTestimonialCard
                 video="/videos/depoimento-01.mp4"
                 poster="/videos/posters/depoimento-01.jpg"
-                nome="Cliente Comar"
+                nome="Everton e Katia"
                 ambiente="Depoimento"
                 quote="Confira o depoimento em vídeo."
               />
               <VideoTestimonialCard
                 video="/videos/depoimento-02.mp4"
                 poster="/videos/posters/depoimento-02.jpg"
-                nome="Cliente Comar"
+                nome="Idelaine"
                 ambiente="Depoimento"
                 quote="Confira o depoimento em vídeo."
               />

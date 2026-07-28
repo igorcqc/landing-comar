@@ -46,9 +46,8 @@ export default function VideoTestimonialCard({
       </div>
       <div className="video-caption">
         <p className="quote">&quot;{quote}&quot;</p>
-        <p className="who">
-          {nome}, {ambiente}
-        </p>
+        <p className="who">{nome}</p>
+        <p className="who-sub">Cliente Comar Móveis</p>
       </div>
     </div>
   );

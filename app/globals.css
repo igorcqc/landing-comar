@@ -881,6 +881,12 @@ footer {
 }
 .video-caption .who {
   margin-top: 0.9rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--ink);
+}
+.video-caption .who-sub {
+  margin-top: 0.2rem;
   font-size: 0.8rem;
   color: var(--ink-soft);
 }
