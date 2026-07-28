@@ -61,9 +61,9 @@ export default function Home() {
               <p className="eyebrow">Móveis planejados · SJN &amp; Rio Grande</p>
               <h1>O móvel planejado que transforma sua casa no lugar que você sempre sonhou.</h1>
               <p className="lede">
-                Projeto, fabricação e instalação próprios, sob medida para
-                cada canto da sua casa. Mais de 400 ambientes entregues
-                desde 2021, do apartamento compacto ao espaço comercial.
+                Projeto sob medida para cada canto da sua casa. Mais de 400
+                ambientes entregues desde 2021, do apartamento compacto ao
+                espaço comercial.
               </p>
               <div className="hero-ctas">
                 <button
