@@ -34,6 +34,7 @@ async function createTrelloCard(params: {
   ambiente?: string;
   cidade?: string;
   investimento?: string;
+  prazo?: string;
   campanha?: string;
   conjunto?: string;
   anuncio?: string;
@@ -56,6 +57,7 @@ async function createTrelloCard(params: {
     ambiente,
     cidade,
     investimento,
+    prazo,
     campanha,
     conjunto,
     anuncio,
@@ -99,9 +101,10 @@ async function createTrelloCard(params: {
     const desc = [
       `Nome: ${nome || "(não informado)"}`,
       `WhatsApp: ${whats || "(não informado)"}`,
+      `Local de atendimento: ${cidade || "(não informado)"}`,
       `Ambiente: ${ambiente || "(não informado)"}`,
-      `Cidade: ${cidade || "(não informado)"}`,
       `Investimento: ${investimento || "(não informado)"}`,
+      `Prazo para iniciar: ${prazo || "(não informado)"}`,
       "",
       `Campanha: ${campanha || "(não informado)"}`,
       `Conjunto de anúncios: ${conjunto || "(não informado)"}`,
@@ -172,7 +175,7 @@ async function sendMetaCapiEvent(params: {
     userData.external_id = [phoneHash];
   }
 
-  if (cidade && cidade !== "Outra cidade") {
+  if (cidade) {
     userData.ct = [sha256(normalizeForHash(cidade))];
   }
   userData.st = [sha256("rs")];
@@ -230,6 +233,7 @@ export async function POST(request: NextRequest) {
     ambiente,
     cidade,
     investimento,
+    prazo,
     utm,
     eventId,
     fbp,
@@ -257,6 +261,7 @@ export async function POST(request: NextRequest) {
       ambiente,
       cidade,
       investimento,
+      prazo,
       campanha,
       conjunto,
       anuncio,

@@ -684,9 +684,6 @@ section {
   .modal-panel .field {
     margin-bottom: 0.85rem;
   }
-  .modal-panel .field-row {
-    gap: 0.85rem;
-  }
 }
 
 /* ---------- footer ---------- */
@@ -926,14 +923,3 @@ footer {
   margin-top: 1.6rem;
 }
 
-/* ---------- form two-column row ---------- */
-.field-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1rem 1.15rem;
-}
-@media (max-width: 480px) {
-  .field-row {
-    grid-template-columns: 1fr;
-  }
-}

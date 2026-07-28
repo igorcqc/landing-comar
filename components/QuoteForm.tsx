@@ -5,23 +5,24 @@ import { getStoredUtmParams } from "@/lib/utm";
 import { generateEventId, getFbc, getFbp, trackMetaEvent } from "@/lib/meta";
 
 const WHATSAPP_NUMBER = "5553999044420";
+const CIDADES = ["São José do Norte", "Rio Grande", "Cassino"];
 const AMBIENTES = [
-  "Cozinha",
-  "Quarto",
-  "Closet",
+  "Cozinha/Área Gourmet",
   "Sala",
+  "Dormitório",
   "Banheiro",
-  "Escritório",
-  "Estofados",
+  "Casa Completa",
   "Outro",
 ];
-const CIDADES = ["São José do Norte", "Rio Grande", "Outra cidade"];
 const INVESTIMENTOS = [
-  "Até R$ 5.000",
-  "R$ 5.000 a R$ 15.000",
-  "R$ 15.000 a R$ 30.000",
-  "Acima de R$ 30.000",
-  "Ainda não sei",
+  "Até R$15 mil",
+  "R$15 mil a R$30 mil",
+  "Acima de R$30 mil",
+];
+const PRAZOS = [
+  "Imediatamente",
+  "Nos próximos 3 meses",
+  "Daqui a alguns meses",
 ];
 
 interface QuoteFormProps {
@@ -31,9 +32,10 @@ interface QuoteFormProps {
 export default function QuoteForm({ onSubmitted }: QuoteFormProps) {
   const [nome, setNome] = useState("");
   const [whats, setWhats] = useState("");
-  const [ambiente, setAmbiente] = useState(AMBIENTES[0]);
   const [cidade, setCidade] = useState(CIDADES[0]);
+  const [ambiente, setAmbiente] = useState(AMBIENTES[0]);
   const [investimento, setInvestimento] = useState(INVESTIMENTOS[0]);
+  const [prazo, setPrazo] = useState(PRAZOS[0]);
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -54,9 +56,10 @@ export default function QuoteForm({ onSubmitted }: QuoteFormProps) {
       body: JSON.stringify({
         nome,
         whats,
-        ambiente,
         cidade,
+        ambiente,
         investimento,
+        prazo,
         utm: getStoredUtmParams(),
         eventId,
         fbp,
@@ -68,9 +71,10 @@ export default function QuoteForm({ onSubmitted }: QuoteFormProps) {
 
     const linhas = [
       `Olá! Meu nome é ${nome || "(não informado)"}.`,
+      `Local de atendimento: ${cidade}.`,
       `Tenho interesse em um projeto de: ${ambiente}.`,
-      `Cidade: ${cidade}.`,
       `Expectativa de investimento: ${investimento}.`,
+      `Prazo para iniciar: ${prazo}.`,
       whats ? `Meu WhatsApp para retorno: ${whats}` : null,
     ].filter(Boolean);
 
@@ -107,40 +111,50 @@ export default function QuoteForm({ onSubmitted }: QuoteFormProps) {
           required
         />
       </div>
-      <div className="field-row">
-        <div className="field">
-          <label htmlFor="ambiente">Tipo de ambiente</label>
-          <select
-            id="ambiente"
-            value={ambiente}
-            onChange={(e) => setAmbiente(e.target.value)}
-          >
-            {AMBIENTES.map((item) => (
-              <option key={item}>{item}</option>
-            ))}
-          </select>
-        </div>
-        <div className="field">
-          <label htmlFor="cidade">Cidade</label>
-          <select
-            id="cidade"
-            value={cidade}
-            onChange={(e) => setCidade(e.target.value)}
-          >
-            {CIDADES.map((item) => (
-              <option key={item}>{item}</option>
-            ))}
-          </select>
-        </div>
+      <div className="field">
+        <label htmlFor="cidade">Qual local você deseja atendimento?</label>
+        <select
+          id="cidade"
+          value={cidade}
+          onChange={(e) => setCidade(e.target.value)}
+        >
+          {CIDADES.map((item) => (
+            <option key={item}>{item}</option>
+          ))}
+        </select>
       </div>
       <div className="field">
-        <label htmlFor="investimento">Expectativa de investimento</label>
+        <label htmlFor="ambiente">Qual ambiente deseja planejar?</label>
+        <select
+          id="ambiente"
+          value={ambiente}
+          onChange={(e) => setAmbiente(e.target.value)}
+        >
+          {AMBIENTES.map((item) => (
+            <option key={item}>{item}</option>
+          ))}
+        </select>
+      </div>
+      <div className="field">
+        <label htmlFor="investimento">Qual sua expectativa de investimento?</label>
         <select
           id="investimento"
           value={investimento}
           onChange={(e) => setInvestimento(e.target.value)}
         >
           {INVESTIMENTOS.map((item) => (
+            <option key={item}>{item}</option>
+          ))}
+        </select>
+      </div>
+      <div className="field">
+        <label htmlFor="prazo">Em quanto tempo você deseja iniciar o projeto?</label>
+        <select
+          id="prazo"
+          value={prazo}
+          onChange={(e) => setPrazo(e.target.value)}
+        >
+          {PRAZOS.map((item) => (
             <option key={item}>{item}</option>
           ))}
         </select>
