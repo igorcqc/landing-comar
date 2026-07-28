@@ -3,25 +3,36 @@
 import { useState } from "react";
 import Image from "next/image";
 
-type Categoria = "Cozinha" | "Quarto" | "Closet" | "Sala" | "Banheiro" | "Detalhes";
+type Categoria = "Cozinha" | "Quarto" | "Closet" | "Sala" | "Banheiro";
 
 interface Projeto {
   src: string;
   alt: string;
   categoria: Categoria;
+  destaqueTodos?: boolean;
   big?: boolean;
 }
 
 const PROJETOS: Projeto[] = [
-  { src: "/projetos/cozinha-01.jpg", alt: "Cozinha planejada com ilha em preto fosco e móveis sob medida em madeira", categoria: "Cozinha", big: true },
-  { src: "/projetos/quarto-01.jpg", alt: "Quarto planejado com painel ripado em madeira e iluminação embutida", categoria: "Quarto" },
-  { src: "/projetos/closet-01.jpg", alt: "Closet planejado com iluminação em LED e portas amadeiradas", categoria: "Closet" },
-  { src: "/projetos/sala-01.jpg", alt: "Estofado sob medida em linho claro", categoria: "Sala" },
-  { src: "/projetos/banheiro-01.jpg", alt: "Banheiro planejado com bancada em preto e marmorizado", categoria: "Banheiro", big: true },
-  { src: "/projetos/quarto-02.jpg", alt: "Quarto planejado com cabeceira em madeira e criado-mudo em concreto", categoria: "Quarto" },
-  { src: "/projetos/cozinha-02.jpg", alt: "Cozinha planejada com acabamento escuro e iluminação linear", categoria: "Cozinha" },
-  { src: "/projetos/sala-02.jpg", alt: "Sala planejada com painel para TV e acabamento em pedra", categoria: "Sala" },
-  { src: "/projetos/detalhe-01.jpg", alt: "Detalhe de acabamento em estofado sob medida", categoria: "Detalhes" },
+  { src: "/projetos/cozinha-01.jpg", alt: "Cozinha planejada com marcenaria em tom azul e bancada branca", categoria: "Cozinha", destaqueTodos: true, big: true },
+  { src: "/projetos/cozinha-02.jpg", alt: "Cozinha planejada com acabamento escuro e iluminação linear", categoria: "Cozinha", destaqueTodos: true },
+  { src: "/projetos/cozinha-03.jpg", alt: "Cozinha planejada com ilha e geladeira integrada", categoria: "Cozinha" },
+
+  { src: "/projetos/quarto-01.jpg", alt: "Quarto planejado com guarda-roupa espelhado", categoria: "Quarto", destaqueTodos: true },
+  { src: "/projetos/quarto-02.jpg", alt: "Quarto planejado com bancada de estudos sob medida", categoria: "Quarto" },
+  { src: "/projetos/quarto-03.jpg", alt: "Quarto planejado com espelho circular com LED", categoria: "Quarto" },
+
+  { src: "/projetos/closet-01.jpg", alt: "Closet planejado com prateleiras em branco e madeira", categoria: "Closet" },
+  { src: "/projetos/closet-02.jpg", alt: "Closet planejado modular em tom de cinza", categoria: "Closet" },
+  { src: "/projetos/closet-03.jpg", alt: "Closet planejado com iluminação em LED embutida", categoria: "Closet", destaqueTodos: true, big: true },
+
+  { src: "/projetos/sala-01.jpg", alt: "Sala planejada com painel para TV em cinza", categoria: "Sala" },
+  { src: "/projetos/sala-02.jpg", alt: "Sala planejada com estante e painel para TV", categoria: "Sala" },
+  { src: "/projetos/sala-03.jpg", alt: "Sala planejada com painel ripado e acabamento em pedra", categoria: "Sala", destaqueTodos: true },
+
+  { src: "/projetos/banheiro-01.jpg", alt: "Banheiro planejado com bancada em mármore escuro", categoria: "Banheiro", destaqueTodos: true },
+  { src: "/projetos/banheiro-02.jpg", alt: "Banheiro planejado com bancada suspensa em madeira", categoria: "Banheiro", destaqueTodos: true },
+  { src: "/projetos/banheiro-03.jpg", alt: "Banheiro planejado com espelho iluminado", categoria: "Banheiro" },
 ];
 
 const CATEGORIAS: Array<Categoria | "Todos"> = [
@@ -36,8 +47,8 @@ const CATEGORIAS: Array<Categoria | "Todos"> = [
 export default function ProjectGallery() {
   const [ativo, setAtivo] = useState<Categoria | "Todos">("Todos");
 
-  const visiveis = PROJETOS.filter(
-    (p) => ativo === "Todos" || p.categoria === ativo
+  const visiveis = PROJETOS.filter((p) =>
+    ativo === "Todos" ? p.destaqueTodos : p.categoria === ativo
   );
 
   return (
