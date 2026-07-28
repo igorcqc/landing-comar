@@ -180,23 +180,18 @@ export default function Home() {
             <div className="video-grid reveal">
               <VideoTestimonialCard
                 video="/videos/depoimento-01.mp4"
-                poster="/projetos/quarto-01.jpg"
+                poster="/videos/posters/depoimento-01.jpg"
                 nome="Cliente Comar"
                 ambiente="Depoimento"
                 quote="Confira o depoimento em vídeo."
               />
               <VideoTestimonialCard
                 video="/videos/depoimento-02.mp4"
-                poster="/projetos/cozinha-01.jpg"
+                poster="/videos/posters/depoimento-02.jpg"
                 nome="Cliente Comar"
                 ambiente="Depoimento"
                 quote="Confira o depoimento em vídeo."
               />
-            </div>
-            <div className="video-more reveal">
-              <a className="btn btn-outline" href="#mais-depoimentos">
-                Ver mais feedback dos nossos clientes →
-              </a>
             </div>
           </div>
         </section>
@@ -266,27 +261,6 @@ export default function Home() {
               >
                 Solicitar orçamento
               </button>
-            </div>
-          </div>
-        </section>
-
-        <section id="mais-depoimentos">
-          <div className="section-inner">
-            <div className="section-head reveal">
-              <p className="eyebrow">Mais feedback</p>
-              <h2>Todos os depoimentos dos nossos clientes</h2>
-              <p>Espaço reservado para os próximos vídeos de clientes.</p>
-            </div>
-            <div className="more-grid reveal">
-              {Array.from({ length: 6 }).map((_, i) => (
-                <div className="more-slot" key={i}>
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                    <path d="M23 7l-7 5 7 5V7z" />
-                    <rect x="1" y="5" width="15" height="14" rx="2" />
-                  </svg>
-                  <span>vídeo em breve</span>
-                </div>
-              ))}
             </div>
           </div>
         </section>
