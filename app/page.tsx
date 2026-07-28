@@ -50,23 +50,6 @@ export default function Home() {
             >
               Orçamento
             </button>
-            <button
-              type="button"
-              className="icon-btn"
-              onClick={openQuoteModal}
-              aria-label="WhatsApp"
-            >
-              <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.6"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <path d="M21 11.5a8.4 8.4 0 0 1-8.9 8.4 8.5 8.5 0 0 1-4-1L3 20l1.2-4.8a8.4 8.4 0 0 1-1-4A8.4 8.4 0 0 1 11.9 3a8.4 8.4 0 0 1 9.1 8.5z" />
-              </svg>
-            </button>
           </div>
         </div>
       </header>
@@ -140,6 +123,15 @@ export default function Home() {
               <p>Projetos reais, entregues e instalados pela nossa equipe.</p>
             </div>
             <ProjectGallery />
+            <div className="section-cta reveal">
+              <button
+                type="button"
+                className="btn btn-primary"
+                onClick={openQuoteModal}
+              >
+                Quero um projeto assim
+              </button>
+            </div>
           </div>
         </section>
 
@@ -165,6 +157,15 @@ export default function Home() {
                 ambiente="Depoimento"
                 quote="Confira o depoimento em vídeo."
               />
+            </div>
+            <div className="section-cta reveal">
+              <button
+                type="button"
+                className="btn btn-primary"
+                onClick={openQuoteModal}
+              >
+                Quero meu orçamento também
+              </button>
             </div>
           </div>
         </section>
