@@ -15,18 +15,21 @@ const GOOGLE_MAPS_LINK =
 const DEPOIMENTOS_ESCRITOS = [
   {
     quote:
-      "Cada detalhe do projeto foi pensado pro nosso espaço. A instalação foi rápida e o acabamento surpreendeu.",
-    who: "exemplo ilustrativo, cliente Cozinha",
+      "Ótima experiência! Empresa nota 10, desde a parte de vendas, ao planejamento dos móveis e a montagem! Serviço completo! Parabéns!",
+    who: "Giovana Westendorff Pegoraro",
+    link: "https://maps.app.goo.gl/AUK7N7dPTcDioYr6A",
   },
   {
     quote:
-      "Prazo cumprido do jeito que foi combinado, com atualização em cada etapa da fabricação.",
-    who: "exemplo ilustrativo, cliente Closet",
+      "Gostaria de parabenizar toda equipe da Comar Móveis, pelo ótimo atendimento e entrega perfeita. A equipe de montagem super atenciosa e organizada. Os móveis ficaram exatamente como imaginei. Super recomendo.",
+    who: "Hélia Smidt",
+    link: "https://maps.app.goo.gl/fnRncPzL1iPquLTa6",
   },
   {
     quote:
-      "Orçamento justo e sem enrolação. Hoje é impossível pensar no escritório sem o móvel que a Comar fez.",
-    who: "exemplo ilustrativo, cliente Escritório",
+      "Nossa experiência com a Comar foi ótima! Foram super atenciosos e detalhistas desde o início. Entregaram no prazo prometido e a qualidade dentro das nossas expectativas.",
+    who: "Dayara Velasco",
+    link: "https://maps.app.goo.gl/KS8dG98fEkUdQvHx7",
   },
 ];
 
@@ -210,22 +213,25 @@ export default function Home() {
                 <div className="t-card" key={item.who}>
                   <div className="stars">★★★★★</div>
                   <p className="quote">&quot;{item.quote}&quot;</p>
-                  <p className="who">{item.who}</p>
+                  <a
+                    className="who who-link"
+                    href={item.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {item.who}
+                  </a>
                 </div>
               ))}
             </div>
             <div className="t-foot reveal">
-              <p className="note">
-                depoimentos escritos ilustrativos, a substituir por
-                avaliações reais do Google
-              </p>
               <a
                 className="g-link"
                 href={GOOGLE_MAPS_LINK}
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Ver avaliações no Google →
+                Ver todas as avaliações no Google →
               </a>
             </div>
           </div>

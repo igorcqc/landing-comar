@@ -431,14 +431,21 @@ section {
   line-height: 1.55;
 }
 .t-card .who {
+  display: block;
   margin-top: 1.2rem;
   font-size: 0.8rem;
+  font-weight: 700;
   color: var(--ink-soft);
+}
+.t-card .who-link:hover {
+  color: var(--brown);
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
 .t-foot {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   margin-top: 2.4rem;
   flex-wrap: wrap;
   gap: 1rem;
