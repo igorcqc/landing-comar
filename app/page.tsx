@@ -175,10 +175,7 @@ export default function Home() {
             <div className="section-head reveal">
               <p className="eyebrow">Depoimentos</p>
               <h2>Quem já planejou com a gente conta como foi</h2>
-              <p>
-                Depoimentos em vídeo dos nossos clientes. Em breve, com os
-                vídeos reais gravados e editados.
-              </p>
+              <p>Depoimentos em vídeo dos nossos clientes.</p>
             </div>
             <div className="video-grid reveal">
               <VideoTestimonialCard
@@ -189,10 +186,11 @@ export default function Home() {
                 quote="Confira o depoimento em vídeo."
               />
               <VideoTestimonialCard
+                video="/videos/depoimento-02.mp4"
                 poster="/projetos/cozinha-01.jpg"
-                nome="Cliente exemplo"
-                ambiente="Cozinha planejada"
-                quote="Depoimento em vídeo, a substituir pela gravação real do cliente."
+                nome="Cliente Comar"
+                ambiente="Depoimento"
+                quote="Confira o depoimento em vídeo."
               />
             </div>
             <div className="video-more reveal">
