@@ -20,7 +20,14 @@ export async function POST(request: NextRequest) {
   }
 
   const body = await request.json();
-  const { nome, whats, ambiente, cidade, investimento } = body ?? {};
+  const { nome, whats, ambiente, cidade, investimento, utm } = body ?? {};
+  const {
+    utm_campaign: campanha,
+    utm_term: conjunto,
+    utm_content: anuncio,
+    utm_source: origem,
+    utm_medium: midia,
+  } = utm ?? {};
 
   try {
     const listsParams = new URLSearchParams({
@@ -61,6 +68,11 @@ export async function POST(request: NextRequest) {
       `Ambiente: ${ambiente || "(não informado)"}`,
       `Cidade: ${cidade || "(não informado)"}`,
       `Investimento: ${investimento || "(não informado)"}`,
+      "",
+      `Campanha: ${campanha || "(não informado)"}`,
+      `Conjunto de anúncios: ${conjunto || "(não informado)"}`,
+      `Anúncio: ${anuncio || "(não informado)"}`,
+      `Origem/mídia: ${origem || "(não informado)"} / ${midia || "(não informado)"}`,
       "",
       "Origem: formulário do site (landing page)",
     ].join("\n");

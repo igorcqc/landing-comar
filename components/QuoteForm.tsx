@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
+import { getStoredUtmParams } from "@/lib/utm";
 
 const WHATSAPP_NUMBER = "5553999044420";
 const AMBIENTES = [
@@ -39,7 +40,14 @@ export default function QuoteForm({ onSubmitted }: QuoteFormProps) {
     fetch("/api/lead", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ nome, whats, ambiente, cidade, investimento }),
+      body: JSON.stringify({
+        nome,
+        whats,
+        ambiente,
+        cidade,
+        investimento,
+        utm: getStoredUtmParams(),
+      }),
       keepalive: true,
     }).catch(() => {});
 

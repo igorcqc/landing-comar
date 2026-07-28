@@ -1,9 +1,12 @@
 "use client";
 
 import { useEffect } from "react";
+import { captureUtmParams } from "@/lib/utm";
 
 export default function ScrollEffects() {
   useEffect(() => {
+    captureUtmParams();
+
     const header = document.getElementById("header");
     const onScroll = () => {
       header?.classList.toggle("scrolled", window.scrollY > 8);
