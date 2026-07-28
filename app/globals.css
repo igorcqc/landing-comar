@@ -622,6 +622,7 @@ section {
   font-size: 0.96rem;
 }
 .modal-panel .form-card {
+  background: transparent;
   padding: 0;
   box-shadow: none;
   border-radius: 0;
