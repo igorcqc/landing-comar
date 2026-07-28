@@ -241,7 +241,7 @@ export default function Home() {
                   <dt>WhatsApp</dt>
                   <dd>(53) 99904-4420</dd>
                   <dt>Atendemos</dt>
-                  <dd>São José do Norte e Rio Grande</dd>
+                  <dd>São José do Norte, Rio Grande e Cassino</dd>
                 </dl>
                 <button
                   type="button"

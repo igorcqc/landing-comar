@@ -19,6 +19,9 @@ export const metadata: Metadata = {
     "dormitório planejado",
     "móveis sob medida",
   ],
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
     title: "Comar Móveis Planejados",
     description:
@@ -27,6 +30,21 @@ export const metadata: Metadata = {
     siteName: "Comar Móveis Planejados",
     locale: "pt_BR",
     type: "website",
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Cozinha planejada pela Comar Móveis Planejados",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Comar Móveis Planejados",
+    description:
+      "Móveis planejados sob medida em São José do Norte, Rio Grande e Cassino. Mais de 400 ambientes entregues desde 2021.",
+    images: ["/og-image.jpg"],
   },
 };
 
@@ -47,6 +65,11 @@ const jsonLd = {
   },
   areaServed: ["São José do Norte", "Rio Grande", "Cassino"],
   priceRange: "$$",
+  aggregateRating: {
+    "@type": "AggregateRating",
+    ratingValue: "5.0",
+    reviewCount: "117",
+  },
 };
 
 export default function RootLayout({

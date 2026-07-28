@@ -6,6 +6,7 @@ import {
   useContext,
   useEffect,
   useMemo,
+  useRef,
   useState,
   type ReactNode,
 } from "react";
@@ -31,14 +32,21 @@ export default function QuoteModalProvider({
   children: ReactNode;
 }) {
   const [open, setOpen] = useState(false);
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
+  const triggerRef = useRef<HTMLElement | null>(null);
 
-  const openQuoteModal = useCallback(() => setOpen(true), []);
+  const openQuoteModal = useCallback(() => {
+    triggerRef.current = document.activeElement as HTMLElement;
+    setOpen(true);
+  }, []);
   const closeQuoteModal = useCallback(() => setOpen(false), []);
 
   useEffect(() => {
     if (!open) return;
 
     document.body.style.overflow = "hidden";
+    closeButtonRef.current?.focus();
+
     const onKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") closeQuoteModal();
     };
@@ -47,6 +55,7 @@ export default function QuoteModalProvider({
     return () => {
       document.body.style.overflow = "";
       window.removeEventListener("keydown", onKeyDown);
+      triggerRef.current?.focus();
     };
   }, [open, closeQuoteModal]);
 
@@ -60,13 +69,14 @@ export default function QuoteModalProvider({
           className="modal-overlay"
           role="dialog"
           aria-modal="true"
-          aria-label="Solicitar orçamento"
+          aria-labelledby="quote-modal-title"
           onClick={(e) => {
             if (e.target === e.currentTarget) closeQuoteModal();
           }}
         >
           <div className="modal-panel">
             <button
+              ref={closeButtonRef}
               type="button"
               className="modal-close"
               aria-label="Fechar"
@@ -77,7 +87,7 @@ export default function QuoteModalProvider({
               </svg>
             </button>
             <p className="eyebrow">Orçamento</p>
-            <h2 className="modal-title">Solicite seu projeto</h2>
+            <h2 className="modal-title" id="quote-modal-title">Solicite seu projeto</h2>
             <p className="modal-lede">
               Preencha os dados abaixo. Sua mensagem só é enviada pelo
               WhatsApp depois de preencher tudo.

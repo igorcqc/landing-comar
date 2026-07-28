@@ -119,7 +119,7 @@ async function createTrelloCard(params: {
       `Posicionamento: ${posicionamento || "(não informado)"}`,
       `Origem: ${origem || "(não informado)"}`,
       "",
-      "Origem: formulário do site (landing page)",
+      "Canal: formulário do site (landing page)",
     ].join("\n");
 
     const cardParams = new URLSearchParams({
@@ -248,6 +248,14 @@ export async function POST(request: NextRequest) {
     fbc,
     eventSourceUrl,
   } = body ?? {};
+
+  if (!nome?.trim() && !whats?.trim()) {
+    return NextResponse.json(
+      { error: "Nome ou WhatsApp obrigatório" },
+      { status: 400 }
+    );
+  }
+
   const {
     utm_campaign: campanha,
     utm_term: conjunto,

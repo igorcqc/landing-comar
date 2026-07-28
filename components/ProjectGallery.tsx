@@ -60,6 +60,8 @@ export default function ProjectGallery() {
             className={`filter${ativo === cat ? " active" : ""}`}
             onClick={() => setAtivo(cat)}
             type="button"
+            role="tab"
+            aria-selected={ativo === cat}
           >
             {cat}
           </button>
