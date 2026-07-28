@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import QuoteModalProvider from "@/components/QuoteModal";
+import MetaPixel from "@/components/MetaPixel";
 
 export const metadata: Metadata = {
   title: "Comar Móveis Planejados | Móveis sob medida",
@@ -16,6 +17,7 @@ export default function RootLayout({
   return (
     <html lang="pt-BR">
       <body>
+        <MetaPixel />
         <QuoteModalProvider>{children}</QuoteModalProvider>
       </body>
     </html>

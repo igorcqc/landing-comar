@@ -2,6 +2,7 @@
 
 import { useState, type FormEvent } from "react";
 import { getStoredUtmParams } from "@/lib/utm";
+import { generateEventId, getFbc, getFbp, trackMetaEvent } from "@/lib/meta";
 
 const WHATSAPP_NUMBER = "5553999044420";
 const AMBIENTES = [
@@ -37,6 +38,16 @@ export default function QuoteForm({ onSubmitted }: QuoteFormProps) {
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
+    const eventId = generateEventId();
+    const fbp = getFbp();
+    const fbc = getFbc();
+
+    trackMetaEvent(
+      "Lead",
+      { content_name: ambiente, content_category: "orcamento" },
+      eventId
+    );
+
     fetch("/api/lead", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -47,6 +58,10 @@ export default function QuoteForm({ onSubmitted }: QuoteFormProps) {
         cidade,
         investimento,
         utm: getStoredUtmParams(),
+        eventId,
+        fbp,
+        fbc,
+        eventSourceUrl: window.location.href,
       }),
       keepalive: true,
     }).catch(() => {});
