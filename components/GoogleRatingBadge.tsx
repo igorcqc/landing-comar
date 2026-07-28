@@ -1,6 +1,3 @@
-const GOOGLE_MAPS_LINK =
-  "https://www.google.com/maps/place/Comar+M%C3%B3veis+Planejados/@-32.0098652,-52.0403119,17z/data=!3m1!4b1!4m6!3m5!1s0x95119d235c6770bb:0xdb716984f62c2203!8m2!3d-32.0098652!4d-52.0403119!16s%2Fg%2F11qqfgs9l9";
-
 interface GoogleRatingBadgeProps {
   variant?: "inline" | "block";
 }
@@ -9,12 +6,7 @@ export default function GoogleRatingBadge({
   variant = "inline",
 }: GoogleRatingBadgeProps) {
   return (
-    <a
-      href={GOOGLE_MAPS_LINK}
-      target="_blank"
-      rel="noopener noreferrer"
-      className={`google-badge google-badge-${variant}`}
-    >
+    <div className={`google-badge google-badge-${variant}`}>
       <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
         <path
           fill="#4285F4"
@@ -37,6 +29,6 @@ export default function GoogleRatingBadge({
         <strong>★★★★★ 5,0</strong>
         <span>117 avaliações · a empresa mais bem avaliada de São José do Norte</span>
       </span>
-    </a>
+    </div>
   );
 }

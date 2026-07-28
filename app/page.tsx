@@ -7,29 +7,21 @@ import VideoTestimonialCard from "@/components/VideoTestimonialCard";
 import GoogleRatingBadge from "@/components/GoogleRatingBadge";
 import { useQuoteModal } from "@/components/QuoteModal";
 
-const INSTAGRAM_LINK = "https://www.instagram.com/comarmoveis/";
-const FACEBOOK_LINK = "https://www.facebook.com/comarmoveis";
-const GOOGLE_MAPS_LINK =
-  "https://www.google.com/maps/place/Comar+M%C3%B3veis+Planejados/@-32.0098652,-52.0403119,17z/data=!3m1!4b1!4m6!3m5!1s0x95119d235c6770bb:0xdb716984f62c2203!8m2!3d-32.0098652!4d-52.0403119!16s%2Fg%2F11qqfgs9l9";
-
 const DEPOIMENTOS_ESCRITOS = [
   {
     quote:
       "Ótima experiência! Empresa nota 10, desde a parte de vendas, ao planejamento dos móveis e a montagem! Serviço completo! Parabéns!",
     who: "Giovana Westendorff Pegoraro",
-    link: "https://maps.app.goo.gl/AUK7N7dPTcDioYr6A",
   },
   {
     quote:
       "Gostaria de parabenizar toda equipe da Comar Móveis, pelo ótimo atendimento e entrega perfeita. A equipe de montagem super atenciosa e organizada. Os móveis ficaram exatamente como imaginei. Super recomendo.",
     who: "Hélia Smidt",
-    link: "https://maps.app.goo.gl/fnRncPzL1iPquLTa6",
   },
   {
     quote:
       "Nossa experiência com a Comar foi ótima! Foram super atenciosos e detalhistas desde o início. Entregaram no prazo prometido e a qualidade dentro das nossas expectativas.",
     who: "Dayara Velasco",
-    link: "https://maps.app.goo.gl/KS8dG98fEkUdQvHx7",
   },
 ];
 
@@ -98,9 +90,6 @@ export default function Home() {
                 >
                   Solicitar orçamento
                 </button>
-                <a className="btn btn-outline" href="#projetos">
-                  Ver projetos
-                </a>
               </div>
               <GoogleRatingBadge variant="inline" />
             </div>
@@ -138,15 +127,6 @@ export default function Home() {
                 <span>do projeto à instalação</span>
               </div>
             </div>
-            <div className="trust-item">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5">
-                <path d="M4 17h16M4 12h16M4 7h10" />
-              </svg>
-              <div>
-                <strong>Orçamento gratuito</strong>
-                <span>sem compromisso</span>
-              </div>
-            </div>
           </div>
         </section>
 
@@ -160,16 +140,6 @@ export default function Home() {
               <p>Projetos reais, entregues e instalados pela nossa equipe.</p>
             </div>
             <ProjectGallery />
-            <div className="grid-cta reveal">
-              <a
-                className="btn btn-outline"
-                href={INSTAGRAM_LINK}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Ver mais projetos no Instagram →
-              </a>
-            </div>
           </div>
         </section>
 
@@ -213,26 +183,9 @@ export default function Home() {
                 <div className="t-card" key={item.who}>
                   <div className="stars">★★★★★</div>
                   <p className="quote">&quot;{item.quote}&quot;</p>
-                  <a
-                    className="who who-link"
-                    href={item.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    {item.who}
-                  </a>
+                  <p className="who">{item.who}</p>
                 </div>
               ))}
-            </div>
-            <div className="t-foot reveal">
-              <a
-                className="g-link"
-                href={GOOGLE_MAPS_LINK}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Ver todas as avaliações no Google →
-              </a>
             </div>
           </div>
         </section>
@@ -255,7 +208,7 @@ export default function Home() {
           <div className="section-inner">
             <div className="cta-panel reveal">
               <p className="eyebrow">Orçamento</p>
-              <h2>Solicite seu projeto sem compromisso</h2>
+              <h2>Solicite seu projeto</h2>
               <p className="lede" style={{ marginTop: "1.1rem", color: "var(--ink-soft)" }}>
                 Preencha os dados no formulário e nossa equipe retorna pelo
                 WhatsApp com os próximos passos da medição.
@@ -291,14 +244,13 @@ export default function Home() {
                   <dt>Atendemos</dt>
                   <dd>São José do Norte e Rio Grande</dd>
                 </dl>
-                <a
-                  className="btn btn-outline"
-                  href="https://www.google.com/maps/search/?api=1&query=R.+Ramiro+Barcelos+910+Centro+S%C3%A3o+Jos%C3%A9+do+Norte+RS"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <button
+                  type="button"
+                  className="btn btn-primary"
+                  onClick={openQuoteModal}
                 >
-                  Abrir no Google Maps
-                </a>
+                  Solicitar orçamento
+                </button>
               </div>
               <div className="map-placeholder reveal">
                 <iframe
@@ -325,20 +277,6 @@ export default function Home() {
               <a href="#projetos">Projetos</a>
               <a href="#depoimentos">Depoimentos</a>
               <a href="#localizacao">Localização</a>
-            </div>
-            <div className="footer-social">
-              <a href={INSTAGRAM_LINK} target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                  <rect x="3" y="3" width="18" height="18" rx="5" />
-                  <circle cx="12" cy="12" r="4" />
-                  <circle cx="17.2" cy="6.8" r="0.6" fill="currentColor" stroke="none" />
-                </svg>
-              </a>
-              <a href={FACEBOOK_LINK} target="_blank" rel="noopener noreferrer" aria-label="Facebook">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                  <path d="M14 9h3V6h-3a3 3 0 0 0-3 3v2H9v3h2v6h3v-6h3l1-3h-4v-1.5A.5.5 0 0 1 14 9z" />
-                </svg>
-              </a>
             </div>
           </div>
           <div className="footer-bottom">
