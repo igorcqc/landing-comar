@@ -28,6 +28,13 @@ function normalizeForHash(raw: string): string {
     .toLowerCase();
 }
 
+function formatNameAndId(raw?: string): string {
+  if (!raw) return "(n\u00e3o informado)";
+  const [name, id] = raw.split("|").map((part) => part.trim());
+  if (!name) return "(n\u00e3o informado)";
+  return id ? `${name} (ID: ${id})` : name;
+}
+
 async function createTrelloCard(params: {
   nome?: string;
   whats?: string;
@@ -38,8 +45,8 @@ async function createTrelloCard(params: {
   campanha?: string;
   conjunto?: string;
   anuncio?: string;
+  posicionamento?: string;
   origem?: string;
-  midia?: string;
 }) {
   const apiKey = process.env.TRELLO_API_KEY;
   const token = process.env.TRELLO_TOKEN;
@@ -61,8 +68,8 @@ async function createTrelloCard(params: {
     campanha,
     conjunto,
     anuncio,
+    posicionamento,
     origem,
-    midia,
   } = params;
 
   try {
@@ -106,10 +113,11 @@ async function createTrelloCard(params: {
       `Investimento: ${investimento || "(não informado)"}`,
       `Prazo para iniciar: ${prazo || "(não informado)"}`,
       "",
-      `Campanha: ${campanha || "(não informado)"}`,
-      `Conjunto de anúncios: ${conjunto || "(não informado)"}`,
-      `Anúncio: ${anuncio || "(não informado)"}`,
-      `Origem/mídia: ${origem || "(não informado)"} / ${midia || "(não informado)"}`,
+      `Campanha: ${formatNameAndId(campanha)}`,
+      `Conjunto de anúncios: ${formatNameAndId(conjunto)}`,
+      `Anúncio: ${formatNameAndId(anuncio)}`,
+      `Posicionamento: ${posicionamento || "(não informado)"}`,
+      `Origem: ${origem || "(não informado)"}`,
       "",
       "Origem: formulário do site (landing page)",
     ].join("\n");
@@ -244,8 +252,8 @@ export async function POST(request: NextRequest) {
     utm_campaign: campanha,
     utm_term: conjunto,
     utm_content: anuncio,
+    utm_medium: posicionamento,
     utm_source: origem,
-    utm_medium: midia,
   } = utm ?? {};
 
   const clientIp =
@@ -265,8 +273,8 @@ export async function POST(request: NextRequest) {
       campanha,
       conjunto,
       anuncio,
+      posicionamento,
       origem,
-      midia,
     }),
     sendMetaCapiEvent({
       eventId: eventId || randomUUID(),
