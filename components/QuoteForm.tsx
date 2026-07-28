@@ -36,6 +36,13 @@ export default function QuoteForm({ onSubmitted }: QuoteFormProps) {
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
+    fetch("/api/lead", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ nome, whats, ambiente, cidade, investimento }),
+      keepalive: true,
+    }).catch(() => {});
+
     const linhas = [
       `Olá! Meu nome é ${nome || "(não informado)"}.`,
       `Tenho interesse em um projeto de: ${ambiente}.`,
