@@ -32,6 +32,8 @@ export async function POST(request: NextRequest) {
       `https://api.trello.com/1/boards/${TRELLO_BOARD_ID}/lists?${listsParams.toString()}`
     );
     if (!listsRes.ok) {
+      const detail = await listsRes.text();
+      console.error("Trello lists fetch failed", listsRes.status, detail);
       return NextResponse.json(
         { error: "Falha ao buscar listas do Trello" },
         { status: 502 }
@@ -43,6 +45,10 @@ export async function POST(request: NextRequest) {
     );
 
     if (!list) {
+      console.error(
+        "Trello list not found, available lists:",
+        lists.map((l) => l.name)
+      );
       return NextResponse.json(
         { error: "Lista do Trello não encontrada" },
         { status: 404 }
@@ -72,6 +78,8 @@ export async function POST(request: NextRequest) {
     });
 
     if (!cardRes.ok) {
+      const detail = await cardRes.text();
+      console.error("Trello card creation failed", cardRes.status, detail);
       return NextResponse.json(
         { error: "Falha ao criar card no Trello" },
         { status: 502 }
@@ -79,7 +87,8 @@ export async function POST(request: NextRequest) {
     }
 
     return NextResponse.json({ ok: true });
-  } catch {
+  } catch (err) {
+    console.error("Unexpected error sending lead to Trello", err);
     return NextResponse.json(
       { error: "Erro inesperado ao enviar lead" },
       { status: 500 }
