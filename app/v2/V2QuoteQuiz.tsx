@@ -22,7 +22,7 @@ const AMBIENTES = [
   "Outro ambiente",
 ];
 
-const CIDADES = ["São José do Norte", "Rio Grande", "Cassino"];
+const LOCAIS_ATENDIMENTO = ["São José do Norte", "Rio Grande", "Cassino"];
 
 const PRAZOS = [
   "Quero começar agora",
@@ -44,8 +44,13 @@ const STEP_COPY = [
   },
   {
     kicker: "Atendimento",
-    title: "Onde e quando você quer começar?",
-    text: "Assim nossa equipe entende a disponibilidade para o seu projeto.",
+    title: "Onde seu projeto será realizado?",
+    text: "Selecione o local de atendimento para continuarmos.",
+  },
+  {
+    kicker: "Seu momento",
+    title: "Quando você pretende começar?",
+    text: "Escolha a opção que mais combina com o seu planejamento.",
   },
   {
     kicker: "Planejamento",
@@ -73,10 +78,10 @@ function formatWhatsApp(value: string) {
 
 export default function V2QuoteQuiz({ open, onClose }: V2QuoteQuizProps) {
   const [step, setStep] = useState(0);
-  const [ambiente, setAmbiente] = useState(AMBIENTES[0]);
-  const [cidade, setCidade] = useState(CIDADES[0]);
-  const [prazo, setPrazo] = useState(PRAZOS[0]);
-  const [investimento, setInvestimento] = useState(INVESTIMENTOS[0]);
+  const [ambiente, setAmbiente] = useState("");
+  const [localAtendimento, setLocalAtendimento] = useState("");
+  const [prazo, setPrazo] = useState("");
+  const [investimento, setInvestimento] = useState("");
   const [nome, setNome] = useState("");
   const [whats, setWhats] = useState("");
   const closeRef = useRef<HTMLButtonElement>(null);
@@ -106,12 +111,13 @@ export default function V2QuoteQuiz({ open, onClose }: V2QuoteQuizProps) {
   const copy = STEP_COPY[step];
   const progress = ((step + 1) / STEP_COPY.length) * 100;
 
-  function advance() {
-    setStep((current) => Math.min(current + 1, STEP_COPY.length - 1));
-  }
-
   function goBack() {
-    setStep((current) => Math.max(current - 1, 0));
+    const previousStep = Math.max(step - 1, 0);
+    if (previousStep === 0) setAmbiente("");
+    if (previousStep === 1) setLocalAtendimento("");
+    if (previousStep === 2) setPrazo("");
+    if (previousStep === 3) setInvestimento("");
+    setStep(previousStep);
   }
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
@@ -123,7 +129,7 @@ export default function V2QuoteQuiz({ open, onClose }: V2QuoteQuizProps) {
       "Lead",
       {
         content_name: ambiente,
-        content_category: "orcamento_v2",
+        content_category: "projeto_v2",
       },
       eventId
     );
@@ -134,7 +140,7 @@ export default function V2QuoteQuiz({ open, onClose }: V2QuoteQuizProps) {
       body: JSON.stringify({
         nome,
         whats,
-        cidade,
+        cidade: localAtendimento,
         ambiente,
         investimento,
         prazo,
@@ -150,7 +156,7 @@ export default function V2QuoteQuiz({ open, onClose }: V2QuoteQuizProps) {
     const message = [
       `Olá! Meu nome é ${nome}.`,
       `Quero planejar: ${ambiente}.`,
-      `Local do projeto: ${cidade}.`,
+      `Local de atendimento: ${localAtendimento}.`,
       `Faixa de investimento: ${investimento}.`,
       `Prazo: ${prazo}.`,
       `Meu WhatsApp para retorno: ${whats}.`,
@@ -220,7 +226,10 @@ export default function V2QuoteQuiz({ open, onClose }: V2QuoteQuizProps) {
                       name="ambiente"
                       value={item}
                       checked={ambiente === item}
-                      onChange={() => setAmbiente(item)}
+                      onChange={() => {
+                        setAmbiente(item);
+                        setStep(1);
+                      }}
                     />
                     <span>{item}</span>
                     <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -232,38 +241,51 @@ export default function V2QuoteQuiz({ open, onClose }: V2QuoteQuizProps) {
             )}
 
             {step === 1 && (
-              <div className={styles.fieldStack}>
-                <div className={styles.quizField}>
-                  <label htmlFor="v2-cidade">Cidade do projeto</label>
-                  <select
-                    id="v2-cidade"
-                    value={cidade}
-                    onChange={(event) => setCidade(event.target.value)}
-                  >
-                    {CIDADES.map((item) => (
-                      <option key={item}>{item}</option>
-                    ))}
-                  </select>
-                </div>
-                <fieldset className={styles.optionList}>
-                  <legend>Quando você pretende começar?</legend>
-                  {PRAZOS.map((item) => (
-                    <label key={item}>
-                      <input
-                        type="radio"
-                        name="prazo"
-                        value={item}
-                        checked={prazo === item}
-                        onChange={() => setPrazo(item)}
-                      />
-                      <span>{item}</span>
-                    </label>
-                  ))}
-                </fieldset>
-              </div>
+              <fieldset className={styles.choiceGrid}>
+                <legend className={styles.srOnly}>Local de atendimento</legend>
+                {LOCAIS_ATENDIMENTO.map((item) => (
+                  <label className={styles.choiceCard} key={item}>
+                    <input
+                      type="radio"
+                      name="localAtendimento"
+                      value={item}
+                      checked={localAtendimento === item}
+                      onChange={() => {
+                        setLocalAtendimento(item);
+                        setStep(2);
+                      }}
+                    />
+                    <span>{item}</span>
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M5 12h14M14 7l5 5-5 5" />
+                    </svg>
+                  </label>
+                ))}
+              </fieldset>
             )}
 
             {step === 2 && (
+              <fieldset className={styles.optionList}>
+                <legend className={styles.srOnly}>Prazo para começar</legend>
+                {PRAZOS.map((item) => (
+                  <label key={item}>
+                    <input
+                      type="radio"
+                      name="prazo"
+                      value={item}
+                      checked={prazo === item}
+                      onChange={() => {
+                        setPrazo(item);
+                        setStep(3);
+                      }}
+                    />
+                    <span>{item}</span>
+                  </label>
+                ))}
+              </fieldset>
+            )}
+
+            {step === 3 && (
               <fieldset className={styles.investmentList}>
                 <legend className={styles.srOnly}>Faixa de investimento</legend>
                 {INVESTIMENTOS.map((item) => (
@@ -273,7 +295,10 @@ export default function V2QuoteQuiz({ open, onClose }: V2QuoteQuizProps) {
                       name="investimento"
                       value={item}
                       checked={investimento === item}
-                      onChange={() => setInvestimento(item)}
+                      onChange={() => {
+                        setInvestimento(item);
+                        setStep(4);
+                      }}
                     />
                     <span>
                       <b>{item}</b>
@@ -285,7 +310,7 @@ export default function V2QuoteQuiz({ open, onClose }: V2QuoteQuizProps) {
               </fieldset>
             )}
 
-            {step === 3 && (
+            {step === 4 && (
               <div className={styles.contactFields}>
                 <div className={styles.quizField}>
                   <label htmlFor="v2-nome">Seu nome</label>
@@ -325,21 +350,14 @@ export default function V2QuoteQuiz({ open, onClose }: V2QuoteQuizProps) {
                   Voltar
                 </button>
               )}
-              {step < STEP_COPY.length - 1 ? (
-                <button type="button" className={styles.quizPrimary} onClick={advance}>
-                  Continuar
-                  <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <path d="M5 12h14M14 7l5 5-5 5" />
-                  </svg>
-                </button>
-              ) : (
+              {step === STEP_COPY.length - 1 ? (
                 <button type="submit" className={styles.quizPrimary}>
                   Receber atendimento no WhatsApp
                   <svg viewBox="0 0 24 24" aria-hidden="true">
                     <path d="M5 12h14M14 7l5 5-5 5" />
                   </svg>
                 </button>
-              )}
+              ) : null}
             </div>
           </form>
         </div>
