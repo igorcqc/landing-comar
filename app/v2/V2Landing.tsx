@@ -118,8 +118,8 @@ export default function V2Landing() {
 
   const openQuiz = useCallback((source: string) => {
     trackMetaEvent("ViewContent", {
-      content_name: `abriu_orcamento_v2_${source}`,
-      content_category: "orcamento_v2",
+      content_name: `abriu_projeto_v2_${source}`,
+      content_category: "projeto_v2",
     });
     setQuizOpen(true);
   }, []);
@@ -160,7 +160,7 @@ export default function V2Landing() {
                 Quero planejar meu ambiente
                 <ArrowIcon />
               </button>
-              <span>Orçamento personalizado<br />em menos de 2 minutos</span>
+              <span>Comece seu projeto<br />em menos de 2 minutos</span>
             </div>
           </div>
 
@@ -247,7 +247,7 @@ export default function V2Landing() {
                     <span>0{index + 1}</span>
                     <h3>{category.name}</h3>
                     <p>{category.description}</p>
-                    <b>Explorar projeto <ArrowIcon /></b>
+                    <b>Quero fazer meu projeto <ArrowIcon /></b>
                   </div>
                 </button>
               </article>
@@ -402,8 +402,8 @@ export default function V2Landing() {
         <section className={styles.finalCta}>
           <div className={styles.finalImage} data-v2-reveal>
             <Image
-              src="/projetos/closet-01.jpg"
-              alt="Closet claro planejado pela Comar Móveis"
+              src="/projetos/cozinha-03.jpg"
+              alt="Cozinha contemporânea planejada pela Comar Móveis"
               fill
               sizes="(max-width: 900px) 100vw, 45vw"
             />
@@ -415,7 +415,7 @@ export default function V2Landing() {
               Responda algumas perguntas rápidas. Nossa equipe recebe suas preferências e continua o atendimento pelo WhatsApp.
             </p>
             <button className={styles.primaryCta} type="button" onClick={() => openQuiz("final")}>
-              Solicitar meu orçamento <ArrowIcon />
+              Quero fazer meu projeto <ArrowIcon />
             </button>
             <ul>
               <li>Atendimento em São José do Norte</li>
