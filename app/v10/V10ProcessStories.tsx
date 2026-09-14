@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { Arrow, SectionKicker } from "./V10UI";
+import { V10Transport } from "./V10Transport";
 import styles from "./v10.module.css";
 
 const REVIEWS = [
@@ -132,6 +133,8 @@ export function ProcessAndStories({
           </article>
         </div>
       </section>
+
+      <V10Transport openQuiz={openQuiz} />
 
       <section className={styles.storiesSection} id="clientes">
         <div className={styles.storyHeader} data-v10-reveal>
