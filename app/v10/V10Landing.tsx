@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { useCallback, useEffect, useState } from "react";
 import { captureUtmParams } from "@/lib/utm";
 import V10Quiz from "./V10Quiz";
@@ -108,77 +107,76 @@ export default function V10Landing() {
       </header>
 
       <main>
-        <section className={styles.hero} id="inicio">
-          <div className={styles.heroBackdrop}>
-            <Image
-              src="/projetos/cozinha-02.jpg"
-              alt="Cozinha planejada premium executada pela Comar Móveis"
-              fill
-              priority
-              sizes="100vw"
-              className={styles.heroImage}
-            />
-            <div className={styles.heroShade} />
-          </div>
-
-          <div className={styles.heroContent}>
-            <div className={styles.heroCopy} data-v10-reveal>
-              <div className={styles.googlePill}>
+        <section className={styles.heroClean} id="inicio">
+          <div className={styles.heroCleanInner}>
+            <div className={styles.heroCleanCopy} data-v10-reveal>
+              <div className={styles.googlePillDark}>
                 <span>★★★★★</span>
                 <b>5,0 no Google</b>
                 <small>117 avaliações</small>
               </div>
 
-              <p className={styles.kicker}>
+              <p className={styles.kickerDark}>
                 Móveis planejados · São José do Norte, Rio Grande e Cassino
               </p>
 
-              <h1>
-                Sua casa merece um projeto pensado
-                <em> para a vida que acontece dentro dela.</em>
+              <h1 className={styles.heroCleanTitle}>
+                Móveis planejados pensados para transformar sua casa com
+                beleza, funcionalidade e confiança.
               </h1>
 
-              <p className={styles.heroText}>
-                Ambientes sob medida, com fábrica própria e acompanhamento do
-                projeto à instalação — para você ter beleza, organização e
-                confiança em cada detalhe.
+              <p className={styles.heroCleanText}>
+                Projetos sob medida, fábrica própria, transporte próprio e
+                acompanhamento do projeto à instalação — uma estrutura completa
+                para cuidar do seu ambiente do início ao fim.
               </p>
 
-              <div className={styles.heroActions}>
+              <div className={styles.heroCleanActions}>
                 <button
                   type="button"
-                  className={styles.primaryButton}
+                  className={styles.darkButton}
                   onClick={() => openQuiz("hero")}
                 >
                   Quero planejar meu ambiente
                   <Arrow />
                 </button>
-                <div className={styles.microcopy}>
+
+                <div className={styles.microcopyDark}>
                   <Check />
                   <span>Leva menos de 1 minuto</span>
                 </div>
               </div>
             </div>
 
-            <div className={styles.heroProof} data-v10-reveal>
-              <div>
+            <div className={styles.heroCards} data-v10-reveal>
+              <article className={styles.heroFeatureCard}>
+                <span>01</span>
                 <strong>400+</strong>
-                <span>ambientes entregues desde 2021</span>
-              </div>
-              <div>
+                <p>ambientes entregues desde 2021</p>
+              </article>
+              <article className={styles.heroFeatureCard}>
+                <span>02</span>
                 <strong>Fábrica própria</strong>
-                <span>mais controle do projeto à instalação</span>
-              </div>
-              <div>
-                <strong>Atendimento local</strong>
-                <span>uma equipe perto de você</span>
-              </div>
+                <p>mais controle do projeto à instalação</p>
+              </article>
+              <article className={styles.heroFeatureCard}>
+                <span>03</span>
+                <strong>Transporte próprio</strong>
+                <p>mais segurança e organização na entrega</p>
+              </article>
+              <article className={styles.heroFeatureCard}>
+                <span>04</span>
+                <strong>5,0 no Google</strong>
+                <p>117 avaliações reforçando a confiança na Comar</p>
+              </article>
             </div>
           </div>
 
-          <div className={styles.scrollHint} aria-hidden="true">
-            <span />
-            conheça a Comar
+          <div className={styles.heroTrustLine}>
+            <span>Projeto sob medida</span>
+            <span>Fabricação própria</span>
+            <span>Transporte próprio</span>
+            <span>Instalação</span>
           </div>
         </section>
 
