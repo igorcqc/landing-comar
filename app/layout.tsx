@@ -3,17 +3,17 @@ import "./globals.css";
 import QuoteModalProvider from "@/components/QuoteModal";
 import MetaPixel from "@/components/MetaPixel";
 
-const SITE_URL = "https://landing-comar.vercel.app";
+const SITE_URL = "https://comarmoveis.com.br";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  title: "Comar Móveis Planejados | Móveis sob medida em São José do Norte e Rio Grande",
+  title: "Comar Móveis Planejados",
   description:
-    "Móveis planejados sob medida em São José do Norte, Rio Grande e Cassino: cozinha, closet, dormitório, sala e banheiro. Mais de 400 ambientes entregues desde 2021.",
+    "Móveis planejados em São José do Norte, Rio Grande, Cassino e região. Projetos para cozinha, dormitório, sala, closet, banheiro e outros ambientes.",
   keywords: [
     "móveis planejados são josé do norte",
     "móveis planejados rio grande rs",
-    "marcenaria planejada",
+    "móveis planejados cassino rs",
     "cozinha planejada",
     "closet planejado",
     "dormitório planejado",
@@ -21,30 +21,6 @@ export const metadata: Metadata = {
   ],
   alternates: {
     canonical: "/",
-  },
-  openGraph: {
-    title: "Comar Móveis Planejados",
-    description:
-      "Móveis planejados sob medida em São José do Norte, Rio Grande e Cassino. Mais de 400 ambientes entregues desde 2021.",
-    url: SITE_URL,
-    siteName: "Comar Móveis Planejados",
-    locale: "pt_BR",
-    type: "website",
-    images: [
-      {
-        url: "/og-image.jpg",
-        width: 1200,
-        height: 630,
-        alt: "Cozinha planejada pela Comar Móveis Planejados",
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Comar Móveis Planejados",
-    description:
-      "Móveis planejados sob medida em São José do Norte, Rio Grande e Cassino. Mais de 400 ambientes entregues desde 2021.",
-    images: ["/og-image.jpg"],
   },
 };
 
@@ -65,11 +41,6 @@ const jsonLd = {
   },
   areaServed: ["São José do Norte", "Rio Grande", "Cassino"],
   priceRange: "$$",
-  aggregateRating: {
-    "@type": "AggregateRating",
-    ratingValue: "5.0",
-    reviewCount: "117",
-  },
 };
 
 export default function RootLayout({
