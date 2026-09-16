@@ -526,3 +526,62 @@
     width:235px;
   }
 }
+
+
+/* ===== Logos COMAR: colorida no header + negativa no footer ===== */
+.brandHeader{
+  background:#faf8f4;
+  color:#171717;
+  border-bottom:1px solid #e3ddd5;
+}
+.brandLogoLink{
+  width:224px;
+  max-width:42vw;
+  display:flex;
+  align-items:center;
+  overflow:visible;
+}
+.brandLogoImage{
+  width:100%;
+  height:auto;
+  display:block;
+  object-fit:contain;
+  object-position:left center;
+}
+.brandHeaderCta{
+  color:#3b312b;
+  border-bottom-color:#9B765A;
+}
+.brandHeaderCta span{color:#9B765A}
+
+.footer{
+  background:#84644A;
+  color:#fff;
+  border-top:0;
+}
+.footer p{color:#eadfd5}
+.footer b{color:#fff}
+.footerContact{color:#fff}
+.footer>small{
+  border-top-color:rgba(255,255,255,.22);
+  color:#e4d7cc;
+}
+.footerBrand>a{
+  width:300px;
+  max-width:100%;
+  display:inline-flex;
+  align-items:center;
+}
+.footerLogo{
+  width:100%;
+  height:auto;
+  object-fit:contain;
+  object-position:left center;
+  display:block;
+  margin:0;
+}
+
+@media(max-width:760px){
+  .brandLogoLink{width:174px;max-width:66vw}
+  .footerBrand>a{width:245px}
+}
