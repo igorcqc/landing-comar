@@ -530,7 +530,7 @@
 
 /* ===== Logos COMAR: colorida no header + negativa no footer ===== */
 .brandHeader{
-  background:#faf8f4;
+  background:#fff;
   color:#171717;
   border-bottom:1px solid #e3ddd5;
 }
@@ -555,7 +555,7 @@
 .brandHeaderCta span{color:#9B765A}
 
 .footer{
-  background:#84644A;
+  background:#84644B;
   color:#fff;
   border-top:0;
 }
