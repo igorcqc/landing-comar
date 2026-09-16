@@ -18,7 +18,7 @@ export async function POST(request: NextRequest) {
     fbc,
   } = body ?? {};
 
-  const pixelId = process.env.NEXT_PUBLIC_META_PIXEL_ID;
+  const pixelId = process.env.NEXT_PUBLIC_META_PIXEL_ID || "2761295380787318";
   const accessToken = process.env.META_CAPI_ACCESS_TOKEN;
 
   if (!pixelId || !accessToken) {
