@@ -83,14 +83,34 @@ export function Arrow() {
   return <span aria-hidden="true">↗</span>;
 }
 
-export default function OrganicLanding() {
+type OrganicLandingProps = {
+  forcedSource?: "instagram";
+};
+
+function withForcedAttribution(
+  utm: Record<string, string>,
+  forcedSource?: "instagram"
+): Record<string, string> {
+  if (forcedSource === "instagram") {
+    return {
+      ...utm,
+      utm_source: "instagram",
+      utm_medium: "organic",
+      utm_campaign: "bio",
+    };
+  }
+  return utm;
+}
+
+export default function OrganicLanding({ forcedSource }: OrganicLandingProps = {}) {
   const [more, setMore] = useState(false);
   const [sticky, setSticky] = useState(false);
   const hero = useRef<HTMLElement>(null);
 
   useEffect(() => {
     captureUtmParams();
-    const utm = getStoredUtmParams();
+    const storedUtm = getStoredUtmParams();
+    const utm = withForcedAttribution(storedUtm, forcedSource);
     const attribution = resolveAttribution(utm, document.referrer);
 
     trackMetaEvent("ViewContent", {
@@ -107,11 +127,12 @@ export default function OrganicLanding() {
     const observer = new IntersectionObserver(([entry]) => setSticky(!entry.isIntersecting));
     if (hero.current) observer.observe(hero.current);
     return () => observer.disconnect();
-  }, []);
+  }, [forcedSource]);
 
   function start(source: string) {
     const eventId = generateEventId();
-    const utm = getStoredUtmParams();
+    const storedUtm = getStoredUtmParams();
+    const utm = withForcedAttribution(storedUtm, forcedSource);
     const referrer = document.referrer;
     const attribution = resolveAttribution(utm, referrer);
 
