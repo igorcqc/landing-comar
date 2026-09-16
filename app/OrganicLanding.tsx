@@ -4,6 +4,8 @@ import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { captureUtmParams, getStoredUtmParams } from "@/lib/utm";
 import { generateEventId, getFbc, getFbp, trackMetaEvent } from "@/lib/meta";
+import LOGO_COLOR from "@/lib/logoColor";
+import LOGO_NEGATIVE from "@/lib/logoNegative";
 import s from "./organic.module.css";
 
 const WHATSAPP_NUMBER = "5553999044420";
@@ -179,7 +181,7 @@ export default function OrganicLanding({ forcedSource }: OrganicLandingProps = {
     <a className={s.skip} href="#conteudo">Ir para o conteúdo</a>
     <header className={s.brandHeader}>
       <a className={s.brandLogoLink} href="#inicio" aria-label="Comar Móveis Planejados">
-        <img src="/brand/comar-logo-color.webp" alt="Comar Móveis Planejados" className={s.brandLogoImage} />
+        <img src={LOGO_COLOR} alt="Comar Móveis Planejados" className={s.brandLogoImage} />
       </a>
       <button className={s.brandHeaderCta} onClick={() => start("topo")}>Conversar pelo WhatsApp <Arrow /></button>
     </header>
@@ -248,7 +250,7 @@ export default function OrganicLanding({ forcedSource }: OrganicLandingProps = {
       <section className={s.final}><p className={s.eyebrow}>UM PROJETO COMEÇA COM UMA CONVERSA</p><h2>Qual parte da sua casa<br/>você quer transformar?</h2><p>Conte sua ideia. Vamos pensar no seu ambiente juntos.</p><button className={s.cta} onClick={() => start("final")}>Conversar pelo WhatsApp <Arrow /></button><small>Atendimento direto com a equipe da Comar.</small></section>
     </main>
 
-    <footer className={s.footer}><div className={s.footerBrand}><a href="#inicio" aria-label="Comar Móveis Planejados"><img src="/brand/comar-logo-negative.webp" alt="Comar Móveis Planejados" className={s.footerLogo}/></a><p>Feito para a casa.<br/>Pensado para quem vive nela.</p></div><div><b>Venha conversar com a gente</b><p>R. Ramiro Barcelos, 910 · Centro<br/>São José do Norte / RS</p></div><div><b>Perto de você</b><p>São José do Norte<br/>Rio Grande, Cassino e Região</p><span className={s.footerContact}>WhatsApp: (53) 99904-4420</span></div><small>© 2026 Comar Móveis Planejados</small></footer>
+    <footer className={s.footer}><div className={s.footerBrand}><a href="#inicio" aria-label="Comar Móveis Planejados"><img src={LOGO_NEGATIVE} alt="Comar Móveis Planejados" className={s.footerLogo}/></a><p>Feito para a casa.<br/>Pensado para quem vive nela.</p></div><div><b>Venha conversar com a gente</b><p>R. Ramiro Barcelos, 910 · Centro<br/>São José do Norte / RS</p></div><div><b>Perto de você</b><p>São José do Norte<br/>Rio Grande, Cassino e Região</p><span className={s.footerContact}>WhatsApp: (53) 99904-4420</span></div><small>© 2026 Comar Móveis Planejados</small></footer>
 
     {sticky && <div className={s.sticky}><button className={s.cta} onClick={() => start("fixo_mobile")}>Conversar pelo WhatsApp <Arrow /></button></div>}
   </div>;
