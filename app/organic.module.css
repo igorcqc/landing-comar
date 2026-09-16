@@ -451,3 +451,78 @@
   .deliveryLogo{width:210px;height:67px;margin-bottom:18px}
   .footerLogo{width:250px;height:78px}
 }
+
+
+/* ===== Refinamento de branding COMAR: header/footer minimalistas ===== */
+.brandHeader{
+  min-height:88px;
+  padding:14px 5%;
+  background:#000;
+  grid-template-columns:1fr auto;
+  gap:28px;
+  border-bottom:1px solid #1d1d1d;
+}
+.brandLogoLink{
+  width:258px;
+  max-width:42vw;
+  display:flex;
+  align-items:center;
+  padding:3px 0;
+  overflow:visible;
+}
+.brandLogoImage{
+  display:block;
+  width:100%;
+  height:auto;
+  max-height:none;
+  object-fit:contain;
+  object-position:left center;
+}
+.brandHeaderMeta{display:none}
+.brandHeaderCta{
+  align-self:center;
+  white-space:nowrap;
+}
+.heroBrandMark{display:none!important}
+.footer{
+  background:#000;
+}
+.footerBrand>a{
+  display:inline-flex;
+  align-items:center;
+  width:286px;
+  max-width:100%;
+  padding:4px 0 10px;
+}
+.footerLogo{
+  display:block;
+  width:100%;
+  height:auto;
+  max-height:none;
+  object-fit:contain;
+  object-position:left center;
+  margin:0;
+}
+.deliveryLogo{display:none!important}
+
+@media(max-width:760px){
+  .brandHeader{
+    min-height:74px;
+    padding:9px 6%;
+    grid-template-columns:minmax(0,1fr) auto;
+    gap:16px;
+  }
+  .brandLogoLink{
+    width:205px;
+    max-width:68vw;
+    padding:2px 0;
+  }
+  .brandHeaderCta{
+    width:42px;
+    height:42px;
+    flex:0 0 42px;
+  }
+  .footerBrand>a{
+    width:235px;
+  }
+}
