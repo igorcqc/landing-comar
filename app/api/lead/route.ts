@@ -47,6 +47,7 @@ async function createTrelloCard(params: {
   anuncio?: string;
   posicionamento?: string;
   origem?: string;
+  paginaVersao?: string;
 }) {
   const apiKey = process.env.TRELLO_API_KEY;
   const token = process.env.TRELLO_TOKEN;
@@ -70,6 +71,7 @@ async function createTrelloCard(params: {
     anuncio,
     posicionamento,
     origem,
+    paginaVersao,
   } = params;
 
   try {
@@ -118,6 +120,7 @@ async function createTrelloCard(params: {
       `Anúncio: ${formatNameAndId(anuncio)}`,
       `Posicionamento: ${posicionamento || "(não informado)"}`,
       `Origem: ${origem || "(não informado)"}`,
+      `Versão da página: ${paginaVersao || "V1"}`,
       "",
       "Canal: formulário do site (landing page)",
     ].join("\n");
@@ -163,12 +166,13 @@ async function sendMetaCapiEvent(params: {
   fbc?: string;
   clientIp?: string;
   userAgent?: string;
+  paginaVersao?: string;
 }) {
   const pixelId = process.env.NEXT_PUBLIC_META_PIXEL_ID;
   const accessToken = process.env.META_CAPI_ACCESS_TOKEN;
   if (!pixelId || !accessToken) return;
 
-  const { eventId, eventSourceUrl, nome, whats, cidade, fbp, fbc, clientIp, userAgent } = params;
+  const { eventId, eventSourceUrl, nome, whats, cidade, fbp, fbc, clientIp, userAgent, paginaVersao } = params;
 
   const userData: Record<string, unknown> = {};
 
@@ -206,6 +210,7 @@ async function sendMetaCapiEvent(params: {
         custom_data: {
           content_name: "Orçamento",
           content_category: "orcamento",
+          landing_page_version: (paginaVersao || "V1").toLowerCase(),
         },
       },
     ],
@@ -270,6 +275,15 @@ export async function POST(request: NextRequest) {
     undefined;
   const userAgent = request.headers.get("user-agent") || undefined;
 
+  const sourceUrl = eventSourceUrl || request.headers.get("referer") || "";
+  let paginaVersao = "V1";
+  try {
+    const pathname = new URL(sourceUrl).pathname.replace(/\/+$/, "") || "/";
+    if (pathname === "/v2" || pathname.startsWith("/v2/")) paginaVersao = "V2";
+  } catch {
+    if (sourceUrl.includes("/v2")) paginaVersao = "V2";
+  }
+
   const [trelloResult] = await Promise.allSettled([
     createTrelloCard({
       nome,
@@ -283,10 +297,11 @@ export async function POST(request: NextRequest) {
       anuncio,
       posicionamento,
       origem,
+      paginaVersao,
     }),
     sendMetaCapiEvent({
       eventId: eventId || randomUUID(),
-      eventSourceUrl,
+      eventSourceUrl: sourceUrl || undefined,
       nome,
       whats,
       cidade,
@@ -294,6 +309,7 @@ export async function POST(request: NextRequest) {
       fbc,
       clientIp,
       userAgent,
+      paginaVersao,
     }),
   ]);
 
