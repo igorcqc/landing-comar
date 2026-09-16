@@ -7,7 +7,6 @@ import { trackMetaEvent } from "@/lib/meta";
 import Quiz from "./Quiz";
 import s from "./alternativa.module.css";
 
-const MAP = "https://www.google.com/maps/search/?api=1&query=Comar+M%C3%B3veis+Planejados+S%C3%A3o+Jos%C3%A9+do+Norte";
 const projects = [
   { title: "Uma cozinha que acompanha sua rotina.", category: "COZINHA", image: "cozinha-02.jpg", text: "Espaço para preparar, guardar e reunir. Veja como a composição dos móveis e da iluminação muda o ambiente.", cta: "Quero planejar minha cozinha" },
   { title: "Um quarto para desacelerar.", category: "DORMITÓRIO", image: "quarto-03.jpg", text: "Armários integrados ao ambiente, com uma composição que deixa o quarto acolhedor e ajuda a manter tudo no lugar.", cta: "Quero planejar meu quarto" },
@@ -24,7 +23,7 @@ const faqs = [
   ["Como descubro o investimento no meu projeto?", "O valor depende do ambiente, das medidas, dos materiais e dos acabamentos escolhidos. A conversa inicial ajuda a definir suas prioridades e as possibilidades para o projeto."],
   ["Como funcionam o prazo e o pagamento?", "Peça à equipe os prazos e as condições disponíveis para o seu projeto. Esses pontos precisam ser alinhados com você antes da contratação."],
   ["A Comar faz o transporte e a entrega?", "Sim. A Comar conta com transporte e entrega próprios. A equipe combina com você os detalhes de acesso e recebimento dos móveis."],
-  ["Quais regiões vocês atendem?", "Atendemos São José do Norte, Rio Grande e Cassino. Selecione seu local no formulário para começar a conversa."],
+  ["Quais regiões vocês atendem?", "Atendemos São José do Norte, Rio Grande, Cassino e região. Selecione seu local no formulário para começar a conversa."],
 ];
 
 export function Arrow() { return <span aria-hidden="true">↗</span>; }
@@ -47,11 +46,6 @@ export default function Landing() {
 
   return <div className={s.page}>
     <a className={s.skip} href="#conteudo">Ir para o conteúdo</a>
-    <header className={s.header}>
-      <a href="#inicio" className={s.brand} aria-label="Comar Móveis Planejados, início">COMAR<small>MÓVEIS PLANEJADOS</small></a>
-      <nav aria-label="Navegação principal"><a href="#projetos">Ambientes</a><a href="#entrega">Nossa entrega</a><a href="#clientes">Clientes</a></nav>
-      <button className={s.headerCta} onClick={() => start("menu")}>Vamos conversar <Arrow /></button>
-    </header>
     <main id="conteudo">
       <section id="inicio" ref={hero} className={s.hero}>
         <div className={s.heroCopy}>
@@ -59,8 +53,14 @@ export default function Landing() {
           <h1>Sua casa com<br/>espaço para tudo.<br/><em>E com o seu jeito.</em></h1>
           <p className={s.lede}>Móveis planejados para organizar a rotina, aproveitar cada ambiente e fazer você se sentir em casa. Do primeiro projeto à instalação, conte com a Comar.</p>
           <button className={s.cta} onClick={() => start("inicio")}>Quero fazer meu projeto <Arrow /></button>
-          <p className={s.region}>São José do Norte · Rio Grande · Cassino</p>
-          <a className={s.proofLink} href={MAP} target="_blank" rel="noopener noreferrer">Conheça as avaliações de nossos clientes no Google <Arrow /></a>
+          <p className={s.region}>São José do Norte · Rio Grande · Cassino e Região</p>
+          <div className={s.googleProof} aria-label="Google: 5,0 estrelas, 124 avaliações. A empresa mais bem avaliada de São José do Norte.">
+            <span className={s.googleMark} aria-hidden="true">G</span>
+            <div className={s.googleProofCopy}>
+              <div className={s.ratingLine}><span className={s.stars} aria-hidden="true">★★★★★</span><strong>5,0</strong></div>
+              <p><b>124 avaliações</b> · a empresa mais bem avaliada de São José do Norte</p>
+            </div>
+          </div>
         </div>
         <figure className={s.heroPhoto}>
           <Image src="/projetos/cozinha-02.jpg" alt="Cozinha planejada da Comar com móveis escuros e iluminação integrada" fill priority sizes="(max-width: 760px) 100vw, 55vw" />
@@ -83,7 +83,7 @@ export default function Landing() {
         <div className={s.sectionHeading}><div><p className={s.eyebrow}>02 / QUEM JÁ VIVE ESSA EXPERIÊNCIA</p><h2>A casa fica pronta.<br/>A história continua.</h2></div><p>Clientes da Comar contando,<br/>com suas palavras, como foi.</p></div>
         <div className={s.videos}>{[["Everton e Katia", "01"], ["Idelaine", "02"]].map(([name, id]) => <figure key={id}><video controls playsInline preload="none" poster={`/videos/posters/depoimento-${id}.jpg`} src={`/videos/depoimento-${id}.mp4`} aria-label={`Depoimento de ${name}`}/><figcaption><strong>{name}</strong><span>Clientes Comar Móveis</span></figcaption></figure>)}</div>
         <div className={s.reviews}>{reviews.map(([quote, name]) => <blockquote key={name}><span className={s.quoteMark} aria-hidden="true">“</span><p>{quote}</p><cite>{name}</cite></blockquote>)}</div>
-        <a className={s.textButton} href={MAP} target="_blank" rel="noopener noreferrer">Veja mais avaliações no Google <Arrow /></a>
+        <p className={s.googleReviewsNote}>Avaliações de clientes publicadas no Google</p>
       </section>
 
       <section id="processo" className={s.section}>
@@ -108,7 +108,7 @@ export default function Landing() {
       <section id="duvidas" className={`${s.section} ${s.faq}`}><div><p className={s.eyebrow}>05 / ANTES DE COMEÇAR</p><h2>Vamos tirar<br/>suas dúvidas?</h2><p>Uma boa decisão começa<br/>com uma conversa clara.</p></div><div>{faqs.map(([q, a]) => <details key={q}><summary>{q}<span aria-hidden="true">+</span></summary><p>{a}</p></details>)}</div></section>
       <section className={s.final}><p className={s.eyebrow}>UM PROJETO COMEÇA COM UMA CONVERSA</p><h2>Qual parte da sua casa<br/>você quer transformar?</h2><p>Conte sua ideia. Vamos pensar no seu ambiente juntos.</p><button className={s.cta} onClick={() => start("final")}>Quero fazer meu projeto <Arrow /></button><small>Perguntas rápidas para começar seu atendimento.</small></section>
     </main>
-    <footer className={s.footer}><div><a className={s.brand} href="#inicio">COMAR<small>MÓVEIS PLANEJADOS</small></a><p>Feito para a casa.<br/>Pensado para quem vive nela.</p></div><div><b>Venha conversar com a gente</b><p>R. Ramiro Barcelos, 910 · Centro<br/>São José do Norte / RS</p><a href={MAP} target="_blank" rel="noopener noreferrer">Ver localização <Arrow /></a></div><div><b>Perto de você</b><p>São José do Norte<br/>Rio Grande e Cassino</p><a href="https://wa.me/5553999044420" target="_blank" rel="noopener noreferrer">WhatsApp: (53) 99904-4420 <Arrow /></a></div><small>© 2026 Comar Móveis Planejados</small></footer>
+    <footer className={s.footer}><div><a className={s.brand} href="#inicio">COMAR<small>MÓVEIS PLANEJADOS</small></a><p>Feito para a casa.<br/>Pensado para quem vive nela.</p></div><div><b>Venha conversar com a gente</b><p>R. Ramiro Barcelos, 910 · Centro<br/>São José do Norte / RS</p></div><div><b>Perto de você</b><p>São José do Norte<br/>Rio Grande, Cassino e Região</p><span className={s.footerContact}>WhatsApp: (53) 99904-4420</span></div><small>© 2026 Comar Móveis Planejados</small></footer>
     {sticky && !open && <div className={s.sticky}><button className={s.cta} onClick={() => start("fixo_mobile")}>Quero fazer meu projeto <Arrow /></button></div>}
     <Quiz open={open} onClose={() => setOpen(false)}/>
   </div>;
