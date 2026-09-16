@@ -182,16 +182,11 @@ export default function OrganicLanding({ forcedSource }: OrganicLandingProps = {
       <a className={s.brandLogoLink} href="#inicio" aria-label="Comar Móveis Planejados">
         <img src={COMAR_LOGO_NEGATIVE} alt="Comar Móveis Planejados" className={s.brandLogoImage} />
       </a>
-      <div className={s.brandHeaderMeta}>
-        <span>PROJETOS SOB MEDIDA</span>
-        <span>São José do Norte · Rio Grande · Cassino</span>
-      </div>
       <button className={s.brandHeaderCta} onClick={() => start("topo")}>Conversar pelo WhatsApp <Arrow /></button>
     </header>
     <main id="conteudo">
       <section id="inicio" ref={hero} className={s.hero}>
         <div className={s.heroCopy}>
-          <div className={s.heroBrandMark} aria-hidden="true"></div>
           <p className={s.eyebrow}>MÓVEIS PLANEJADOS · PROJETOS COM PERSONALIDADE</p>
           <h1>Sua casa com<br/>espaço para tudo.<br/><em>E com o seu jeito.</em></h1>
           <p className={s.lede}>Móveis planejados para organizar a rotina, aproveitar cada ambiente e fazer você se sentir em casa. Do primeiro projeto à instalação, conte com a Comar.</p>
@@ -241,7 +236,6 @@ export default function OrganicLanding({ forcedSource }: OrganicLandingProps = {
 
       <section id="entrega" className={s.delivery} aria-labelledby="entrega-titulo">
         <div className={s.deliveryCopy}>
-          <img src={COMAR_LOGO_NEGATIVE} alt="" aria-hidden="true" className={s.deliveryLogo}/>
           <p className={s.eyebrow}>04 / TRANSPORTE E ENTREGA PRÓPRIOS</p><h2 id="entrega-titulo">O cuidado também<br/>vai a caminho<br/><em>da sua casa.</em></h2><p>Escolher os móveis é só uma parte da história. A chegada deles também merece atenção.</p><p>Na Comar, o transporte e a entrega são próprios. Você combina os detalhes com a nossa equipe e sabe quem está levando seu projeto até você.</p><ul><li>Veículo próprio da Comar</li><li>Entrega alinhada com você</li><li>Contato direto com a nossa equipe</li></ul><button className={s.cta} onClick={() => start("entrega")}>Quero fazer meu projeto <Arrow /></button></div>
         <div className={s.deliveryGallery}>
           <figure className={s.deliveryMain}><Image src="/entrega/comar-entrega.jpeg" alt="Veículo da Comar em frente a uma casa durante uma entrega" fill sizes="(max-width:760px) 100vw, 50vw"/><figcaption>Da Comar até a sua casa.</figcaption></figure>
