@@ -233,41 +233,88 @@ async function sendMetaCapiEvent(params: {
   }
 }
 
-export async function POST(request: NextRequest) {
-  const body = await request.json();
-  const {
-    nome,
-    whats,
-    ambiente,
-    cidade,
-    investimento,
-    prazo,
-    utm,
-    eventId,
-    fbp,
-    fbc,
-    eventSourceUrl,
-  } = body ?? {};
+// Anti-abuso: sem isso, um robô cria cards falsos no Trello e dispara eventos
+// Lead falsos no CAPI (sujando a otimização da campanha).
+const RATE_LIMIT_WINDOW_MS = 10 * 60 * 1000;
+const RATE_LIMIT_MAX = 5;
+const recentRequests = new Map<string, number[]>();
 
-  if (!nome?.trim() && !whats?.trim()) {
+// Por instância serverless: não é um limite global, mas barra rajadas de um mesmo IP.
+function isRateLimited(ip: string): boolean {
+  const now = Date.now();
+  const hits = (recentRequests.get(ip) ?? []).filter((t) => now - t < RATE_LIMIT_WINDOW_MS);
+  hits.push(now);
+  recentRequests.set(ip, hits);
+  if (recentRequests.size > 5000) recentRequests.clear();
+  return hits.length > RATE_LIMIT_MAX;
+}
+
+// Navegadores sempre mandam Origin em POST; exige que seja o próprio site.
+function isSameOrigin(request: NextRequest): boolean {
+  const origin = request.headers.get("origin");
+  const host = request.headers.get("x-forwarded-host") ?? request.headers.get("host");
+  if (!origin || !host) return false;
+  try {
+    return new URL(origin).host === host;
+  } catch {
+    return false;
+  }
+}
+
+function text(value: unknown, max: number): string | undefined {
+  if (typeof value !== "string") return undefined;
+  const trimmed = value.trim();
+  return trimmed ? trimmed.slice(0, max) : undefined;
+}
+
+export async function POST(request: NextRequest) {
+  const clientIp =
+    request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ||
+    request.headers.get("x-real-ip") ||
+    undefined;
+
+  if (!isSameOrigin(request)) {
+    return NextResponse.json({ error: "Origem não permitida" }, { status: 403 });
+  }
+  if (isRateLimited(clientIp ?? "unknown")) {
+    return NextResponse.json({ error: "Muitas tentativas" }, { status: 429 });
+  }
+
+  const body = await request.json().catch(() => null);
+  if (!body || typeof body !== "object") {
+    return NextResponse.json({ error: "Requisição inválida" }, { status: 400 });
+  }
+
+  const nome = text(body.nome, 120);
+  const whats = text(body.whats, 30);
+  const ambiente = text(body.ambiente, 120);
+  const cidade = text(body.cidade, 120);
+  const investimento = text(body.investimento, 120);
+  const prazo = text(body.prazo, 120);
+  const eventId = text(body.eventId, 100);
+  const fbp = text(body.fbp, 200);
+  const fbc = text(body.fbc, 500);
+  const eventSourceUrl = text(body.eventSourceUrl, 1000);
+  const utm = body.utm && typeof body.utm === "object" ? body.utm : {};
+
+  if (!nome && !whats) {
     return NextResponse.json(
       { error: "Nome ou WhatsApp obrigatório" },
       { status: 400 }
     );
   }
 
-  const {
-    utm_campaign: campanha,
-    utm_term: conjunto,
-    utm_content: anuncio,
-    utm_medium: posicionamento,
-    utm_source: origem,
-  } = utm ?? {};
+  const whatsDigits = whats?.replace(/\D/g, "") ?? "";
+  // Folgado de propósito: o formulário aceita texto livre e perder lead real custa mais que um card de spam.
+  if (whats && (whatsDigits.length < 8 || whatsDigits.length > 15)) {
+    return NextResponse.json({ error: "WhatsApp inválido" }, { status: 400 });
+  }
 
-  const clientIp =
-    request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ||
-    request.headers.get("x-real-ip") ||
-    undefined;
+  const campanha = text(utm.utm_campaign, 200);
+  const conjunto = text(utm.utm_term, 200);
+  const anuncio = text(utm.utm_content, 200);
+  const posicionamento = text(utm.utm_medium, 200);
+  const origem = text(utm.utm_source, 200);
   const userAgent = request.headers.get("user-agent") || undefined;
 
   const [trelloResult] = await Promise.allSettled([
